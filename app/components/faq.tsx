@@ -90,7 +90,7 @@ export default function Faq() {
           <div>
             <p
               className="sx-micro"
-              style={{ marginBottom: "24px", opacity: 0.8, letterSpacing: "2px" }}
+              style={{ marginBottom: "24px", letterSpacing: "2px" }} // Removed opacity: 0.8
             >
               FAQ
             </p>
@@ -103,10 +103,10 @@ export default function Faq() {
           <p
             className="sx-body"
             style={{
-              fontSize: "14px",
+              fontSize: "15px", // Increased from 14px
               letterSpacing: "0.4px",
               lineHeight: 1.85,
-              opacity: 0.65,
+              opacity: 0.8, // Increased from 0.65
             }}
           >
             Có câu hỏi nào khác? Liên hệ trực tiếp qua{" "}
@@ -206,7 +206,7 @@ export default function Faq() {
                 <p
                   className="sx-body"
                   style={{
-                    fontSize: "14px",
+                    fontSize: "15px", // Increased from 14px
                     letterSpacing: "0.4px",
                     lineHeight: 1.85,
                     paddingBottom: "32px",

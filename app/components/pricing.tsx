@@ -108,7 +108,7 @@ export default function Pricing() {
         <div ref={headerRef} style={{ marginBottom: "80px" }}>
           <p
             className="sx-micro"
-            style={{ marginBottom: "24px", opacity: 0.8, letterSpacing: "2px" }}
+            style={{ marginBottom: "24px", letterSpacing: "2px" }} // Removed opacity: 0.8
           >
             Bảng giá
           </p>
@@ -165,7 +165,7 @@ export default function Pricing() {
                   fontWeight: 700,
                   letterSpacing: "2px",
                   textTransform: "uppercase",
-                  color: "rgba(240,240,250,0.6)",
+                  color: "rgba(240,240,250,0.8)", // Increased from 0.6
                   marginBottom: "24px",
                 }}
               >
@@ -191,7 +191,7 @@ export default function Pricing() {
               {plan.period && (
                 <p
                   className="sx-micro"
-                  style={{ opacity: 0.45, marginBottom: "16px" }}
+                  style={{ opacity: 0.7, marginBottom: "16px" }} // Increased from 0.45
                 >
                   {plan.period}
                 </p>
@@ -201,11 +201,11 @@ export default function Pricing() {
               <p
                 className="sx-body"
                 style={{
-                  fontSize: "13px",
+                  fontSize: "13.5px", // Slightly increased
                   letterSpacing: "0.4px",
                   lineHeight: 1.7,
                   marginBottom: "40px",
-                  opacity: 0.65,
+                  opacity: 0.85, // Increased from 0.65
                 }}
               >
                 {plan.description}
@@ -250,7 +250,7 @@ export default function Pricing() {
                         fontSize: "12px",
                         letterSpacing: "0.6px",
                         textTransform: "uppercase",
-                        color: "rgba(240,240,250,0.75)",
+                        color: "rgba(240,240,250,0.9)", // Increased from 0.75
                         lineHeight: 1.5,
                       }}
                     >
@@ -278,7 +278,7 @@ export default function Pricing() {
         <p
           className="sx-micro"
           style={{
-            opacity: 0.35,
+            opacity: 0.6, // Increased from 0.35
             marginTop: "48px",
             letterSpacing: "0.8px",
           }}

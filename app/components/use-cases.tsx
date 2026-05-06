@@ -137,7 +137,6 @@ export default function UseCases() {
               <p
                 className="sx-micro"
                 style={{
-                  opacity: 0.55,
                   letterSpacing: "2px",
                   marginBottom: "24px",
                 }}
@@ -148,7 +147,7 @@ export default function UseCases() {
             <p
               className="sx-micro"
               style={{
-                opacity: 0.65,
+                opacity: 0.8, // Increased from 0.65
                 letterSpacing: "1.5px",
                 marginBottom: "20px",
               }}
@@ -171,7 +170,7 @@ export default function UseCases() {
             <p
               className="sx-body"
               style={{
-                fontSize: "14px",
+                fontSize: "15px", // Increased from 14px
                 letterSpacing: "0.4px",
                 lineHeight: 1.85,
                 marginBottom: "40px",
@@ -203,7 +202,7 @@ export default function UseCases() {
           >
             <span
               className="sx-micro"
-              style={{ opacity: 0.25, fontSize: "10px" }}
+              style={{ opacity: 0.5, fontSize: "10px" }} // Increased from 0.25
             >
               {String(idx + 1).padStart(2, "0")} / {String(cases.length).padStart(2, "0")}
             </span>

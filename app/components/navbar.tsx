@@ -101,14 +101,14 @@ export default function Navbar() {
               className="sx-nav"
               style={{
                 textDecoration: "none",
-                opacity: 0.75,
+                opacity: 0.9, // Increased from 0.75
                 transition: "opacity 0.2s ease",
               }}
               onMouseEnter={(e) =>
                 ((e.currentTarget as HTMLAnchorElement).style.opacity = "1")
               }
               onMouseLeave={(e) =>
-                ((e.currentTarget as HTMLAnchorElement).style.opacity = "0.75")
+                ((e.currentTarget as HTMLAnchorElement).style.opacity = "0.9")
               }
             >
               {item.label}
@@ -203,14 +203,14 @@ export default function Navbar() {
                 letterSpacing: "2px",
                 textTransform: "uppercase",
                 textDecoration: "none",
-                opacity: 0.85,
+                opacity: 1, // Increased from 0.85
                 transition: "opacity 0.2s ease",
               }}
               onMouseEnter={(e) =>
                 ((e.currentTarget as HTMLAnchorElement).style.opacity = "1")
               }
               onMouseLeave={(e) =>
-                ((e.currentTarget as HTMLAnchorElement).style.opacity = "0.85")
+                ((e.currentTarget as HTMLAnchorElement).style.opacity = "1")
               }
             >
               {item.label}

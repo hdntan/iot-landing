@@ -102,8 +102,8 @@ export default function Hero() {
           style={{
             marginBottom: "36px",
             maxWidth: "520px",
-            fontSize: "14px",
-            letterSpacing: "0.5px",
+            fontSize: "15px", // Increased from 14px
+            letterSpacing: "0.4px",
           }}
         >
           Platform IoT B2B — theo dõi thiết bị real-time,
@@ -136,7 +136,7 @@ export default function Hero() {
               </div>
               <div
                 className="sx-micro"
-                style={{ marginTop: "6px", opacity: 0.6 }}
+                style={{ marginTop: "6px" }} // Removed opacity: 0.6 to use global token
               >
                 {s.label}
               </div>

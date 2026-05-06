@@ -79,7 +79,7 @@ export default function Testimonials() {
         <div ref={headerRef} style={{ marginBottom: "80px" }}>
           <p
             className="sx-micro"
-            style={{ marginBottom: "24px", opacity: 0.8, letterSpacing: "2px" }}
+            style={{ marginBottom: "24px", letterSpacing: "2px" }} // Removed opacity: 0.8
           >
             Khách hàng
           </p>
@@ -129,7 +129,7 @@ export default function Testimonials() {
               <p
                 className="sx-body"
                 style={{
-                  fontSize: "14px",
+                  fontSize: "15px", // Increased from 14px
                   lineHeight: 1.85,
                   letterSpacing: "0.4px",
                   marginBottom: "40px",
@@ -162,10 +162,10 @@ export default function Testimonials() {
               >
                 {t.author}
               </p>
-              <p className="sx-micro" style={{ opacity: 0.55, marginBottom: "4px" }}>
+              <p className="sx-micro" style={{ opacity: 0.7, marginBottom: "4px" }}>
                 {t.role}
               </p>
-              <p className="sx-micro" style={{ opacity: 0.4 }}>
+              <p className="sx-micro" style={{ opacity: 0.6 }}>
                 {t.company}
               </p>
             </div>

@@ -65,7 +65,7 @@ export default function Footer() {
         >
           <p
             className="sx-micro"
-            style={{ marginBottom: "24px", opacity: 0.8, letterSpacing: "2px" }}
+            style={{ marginBottom: "24px", letterSpacing: "2px", color: "#ffffff" }}
           >
             Liên hệ
           </p>
@@ -113,7 +113,7 @@ export default function Footer() {
             </p>
             <p
               className="sx-micro"
-              style={{ opacity: 0.7, lineHeight: 1.7, maxWidth: "200px" }}
+              style={{ lineHeight: 1.7, maxWidth: "200px", color: "#ffffff" }} 
             >
               Vận hành thông minh hơn mỗi ngày.
             </p>
@@ -124,7 +124,7 @@ export default function Footer() {
             <div key={section.label}>
               <p
                 className="sx-micro"
-                style={{ opacity: 0.7, marginBottom: "20px", letterSpacing: "1.5px" }}
+                style={{ marginBottom: "20px", letterSpacing: "1.5px", color: "#ffffff" }} 
               >
                 {section.label}
               </p>
@@ -136,20 +136,23 @@ export default function Footer() {
                         href={link.href}
                         style={{
                           color: "#f0f0fa",
-                          fontSize: "12px",
-                          fontWeight: 400,
+                          fontSize: "13px",
+                          fontWeight: 500,
                           letterSpacing: "0.8px",
                           textTransform: "uppercase",
                           textDecoration: "none",
-                          opacity: 0.65,
-                          transition: "opacity 0.2s ease",
+                          opacity: 1,
+                          transition: "opacity 0.2s ease, transform 0.2s ease",
+                          display: "inline-block"
                         }}
-                        onMouseEnter={(e) =>
-                          ((e.currentTarget as HTMLAnchorElement).style.opacity = "1")
-                        }
-                        onMouseLeave={(e) =>
-                          ((e.currentTarget as HTMLAnchorElement).style.opacity = "0.65")
-                        }
+                        onMouseEnter={(e) => {
+                          (e.currentTarget as HTMLAnchorElement).style.opacity = "0.7";
+                          (e.currentTarget as HTMLAnchorElement).style.transform = "translateX(4px)";
+                        }}
+                        onMouseLeave={(e) => {
+                          (e.currentTarget as HTMLAnchorElement).style.opacity = "1";
+                          (e.currentTarget as HTMLAnchorElement).style.transform = "translateX(0)";
+                        }}
                       >
                         {link.title}
                       </a>
@@ -163,15 +166,18 @@ export default function Footer() {
                           letterSpacing: "0.8px",
                           textTransform: "uppercase",
                           textDecoration: "none",
-                          opacity: 0.65,
-                          transition: "opacity 0.2s ease",
+                          opacity: 1,
+                          transition: "opacity 0.2s ease, transform 0.2s ease",
+                          display: "inline-block"
                         }}
-                        onMouseEnter={(e) =>
-                          ((e.currentTarget as HTMLAnchorElement).style.opacity = "1")
-                        }
-                        onMouseLeave={(e) =>
-                          ((e.currentTarget as HTMLAnchorElement).style.opacity = "0.65")
-                        }
+                        onMouseEnter={(e) => {
+                          (e.currentTarget as HTMLAnchorElement).style.opacity = "0.7";
+                          (e.currentTarget as HTMLAnchorElement).style.transform = "translateX(4px)";
+                        }}
+                        onMouseLeave={(e) => {
+                          (e.currentTarget as HTMLAnchorElement).style.opacity = "1";
+                          (e.currentTarget as HTMLAnchorElement).style.transform = "translateX(0)";
+                        }}
                       >
                         {link.title}
                       </Link>
@@ -196,10 +202,10 @@ export default function Footer() {
             gap: "16px",
           }}
         >
-          <p className="sx-micro" style={{ opacity: 0.3, margin: 0 }}>
+          <p className="sx-micro" style={{ color: "rgba(255,255,255,0.6)", margin: 0 }}>
             © 2026 Coffee IoT. All rights reserved.
           </p>
-          <p className="sx-micro" style={{ opacity: 0.3, margin: 0 }}>
+          <p className="sx-micro" style={{ color: "rgba(255,255,255,0.6)", margin: 0 }}>
             Vietnam
           </p>
         </div>

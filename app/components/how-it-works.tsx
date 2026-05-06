@@ -82,7 +82,7 @@ export default function HowItWorks() {
         <div ref={headerRef} style={{ marginBottom: "80px" }}>
           <p
             className="sx-micro"
-            style={{ marginBottom: "24px", opacity: 0.8, letterSpacing: "2px" }}
+            style={{ marginBottom: "24px", letterSpacing: "2px" }} // Removed opacity: 0.8
           >
             Quy trình
           </p>
@@ -128,7 +128,7 @@ export default function HowItWorks() {
               >
                 <span
                   className="sx-micro"
-                  style={{ opacity: isActive ? 0.7 : 0.4 }}
+                  style={{ opacity: isActive ? 1 : 0.5 }} // Increased opacity
                 >
                   {tab.index}
                 </span>
@@ -139,7 +139,7 @@ export default function HowItWorks() {
                     letterSpacing: "1.17px",
                     textTransform: "uppercase",
                     color: "#f0f0fa",
-                    opacity: isActive ? 1 : 0.6,
+                    opacity: isActive ? 1 : 0.7, // Increased from 0.6
                     transition: "opacity 0.2s ease",
                   }}
                 >
@@ -178,7 +178,7 @@ export default function HowItWorks() {
             <p
               className="sx-body"
               style={{
-                fontSize: "14px",
+                fontSize: "15px", // Increased from 14px
                 letterSpacing: "0.4px",
                 lineHeight: 1.85,
                 marginBottom: "40px",

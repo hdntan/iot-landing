@@ -136,7 +136,7 @@ export default function Features() {
               {/* Index */}
               <span
                 className="sx-micro"
-                style={{ opacity: 0.6, paddingTop: "4px" }}
+                style={{ paddingTop: "4px" }} // Removed opacity: 0.6
               >
                 {f.index}
               </span>
@@ -157,7 +157,7 @@ export default function Features() {
                 className="sx-body"
                 style={{
                   margin: 0,
-                  fontSize: "14px",
+                  fontSize: "15px", // Increased from 14px
                   letterSpacing: "0.4px",
                   lineHeight: 1.8,
                   maxWidth: "560px",
