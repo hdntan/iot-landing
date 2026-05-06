@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useRef, useEffect } from "react";
 import gsap from "gsap";
 
@@ -48,12 +49,12 @@ export default function Navbar() {
       className="sticky top-0 z-50 transition-shadow duration-300"
     >
       <nav className="mx-auto max-w-6xl px-4 py-4 flex items-center justify-between">
-        <a
+        <Link
           href="/"
           className="flex items-center gap-2 text-zinc-100 font-semibold text-lg select-none"
         >
           ☕ Coffee IoT
-        </a>
+        </Link>
 
         {/* Desktop nav */}
         <ul

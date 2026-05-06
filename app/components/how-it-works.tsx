@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useRef } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@radix-ui/react-tabs";
 import { Plug, Monitor, TrendingUp } from "lucide-react";
@@ -22,6 +23,7 @@ const tabs = [
       description:
         "Module kết nối qua cổng USB hoặc gắn ngoài. Hỗ trợ mọi thương hiệu máy phổ biến. Kết nối Wifi/4G tự động.",
       buttonText: "Xem hướng dẫn",
+      image: "/images/step1.png",
       imageLabel: "Hướng dẫn lắp đặt",
     },
   },
@@ -35,6 +37,7 @@ const tabs = [
       description:
         "Dashboard hiển thị nhiệt độ, áp suất, số lượt pha, trạng thái online/offline của từng máy theo thời gian thực.",
       buttonText: "Xem demo",
+      image: "/images/step2.png",
       imageLabel: "Dashboard Preview",
     },
   },
@@ -48,6 +51,7 @@ const tabs = [
       description:
         "AI phân tích dữ liệu, dự đoán hỏng hóc, tự động lên lịch bảo trì và gửi báo cáo hàng tuần.",
       buttonText: "Tìm hiểu thêm",
+      image: "/images/step3.png",
       imageLabel: "AI Analytics",
     },
   },
@@ -122,11 +126,13 @@ export default function HowItWorks() {
                   </Button>
                 </div>
 
-                {/* SVG dark placeholder */}
-                <div className="rounded-xl bg-zinc-800 aspect-video w-full flex items-center justify-center">
-                  <span className="text-zinc-500 text-sm">
-                    {tab.content.imageLabel}
-                  </span>
+                <div className="relative overflow-hidden rounded-xl bg-zinc-800 aspect-video w-full flex items-center justify-center border border-white/5">
+                  <Image
+                    src={tab.content.image}
+                    alt={tab.content.imageLabel}
+                    fill
+                    className="object-cover transition-transform duration-700 hover:scale-105"
+                  />
                 </div>
               </TabsContent>
             ))}

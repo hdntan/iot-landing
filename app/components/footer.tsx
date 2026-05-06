@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -98,12 +99,21 @@ export default function Footer() {
               <ul className="text-muted-foreground mt-4 space-y-2 text-sm">
                 {section.links.map((link) => (
                   <li key={link.title}>
-                    <a
-                      href={link.href}
-                      className="hover:text-foreground transition-colors duration-300"
-                    >
-                      {link.title}
-                    </a>
+                    {link.href.startsWith("#") ? (
+                      <a
+                        href={link.href}
+                        className="hover:text-foreground transition-colors duration-300"
+                      >
+                        {link.title}
+                      </a>
+                    ) : (
+                      <Link
+                        href={link.href}
+                        className="hover:text-foreground transition-colors duration-300"
+                      >
+                        {link.title}
+                      </Link>
+                    )}
                   </li>
                 ))}
               </ul>
