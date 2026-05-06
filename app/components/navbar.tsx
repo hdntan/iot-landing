@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 const navItems = [
   { label: "Tính năng", href: "#tinh-nang" },
   { label: "Cách hoạt động", href: "#cach-hoat-dong" },
+  { label: "Bảng giá", href: "#bang-gia" },
   { label: "Liên hệ", href: "#lien-he" },
 ];
 
