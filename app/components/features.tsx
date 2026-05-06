@@ -1,167 +1,67 @@
 "use client";
 
 import React, { useRef } from "react";
-import { Wifi, Bell, BarChart2, Bot } from "lucide-react";
-import type { LucideIcon } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-import { cn } from "@/app/lib/utils";
 
 gsap.registerPlugin(ScrollTrigger);
 
-type Feature = {
-  title: string;
-  icon: LucideIcon;
-  description: string;
-};
-
-const features: Feature[] = [
+const features = [
   {
-    icon: Wifi,
+    index: "01",
     title: "Giám sát Real-time",
     description:
       "Theo dõi trạng thái máy qua Wifi/4G 24/7. Nhiệt độ, áp suất, lưu lượng cập nhật mỗi 30 giây.",
   },
   {
-    icon: Bell,
+    index: "02",
     title: "Cảnh báo Tức thì",
     description:
       "Nhận thông báo sự cố qua Zalo và email ngay khi máy gặp vấn đề. Phản hồi trước khi khách hàng phàn nàn.",
   },
   {
-    icon: BarChart2,
+    index: "03",
     title: "Báo cáo Doanh thu",
     description:
-      "Thống kê tiêu thụ nguyên liệu, doanh thu từng máy theo ngày/tuần/tháng. Export PDF tự động.",
+      "Thống kê tiêu thụ nguyên liệu, doanh thu từng máy theo ngày / tuần / tháng. Export PDF tự động.",
   },
   {
-    icon: Bot,
+    index: "04",
     title: "Bảo trì Phòng ngừa AI",
     description:
       "AI dự đoán hỏng hóc trước 7–14 ngày. Lên lịch bảo trì tự động, giảm 30% chi phí sửa chữa.",
   },
 ];
 
-function GridPattern({
-  width,
-  height,
-  x,
-  y,
-  squares,
-  ...props
-}: React.ComponentProps<"svg"> & {
-  width: number;
-  height: number;
-  x: string;
-  y: string;
-  squares?: number[][];
-}) {
-  const patternId = React.useId();
-  return (
-    <svg aria-hidden="true" {...props}>
-      <defs>
-        <pattern
-          id={patternId}
-          width={width}
-          height={height}
-          patternUnits="userSpaceOnUse"
-          x={x}
-          y={y}
-        >
-          <path d={`M.5 ${height}V.5H${width}`} fill="none" />
-        </pattern>
-      </defs>
-      <rect width="100%" height="100%" strokeWidth={0} fill={`url(#${patternId})`} />
-      {squares && (
-        <svg x={x} y={y} className="overflow-visible">
-          {squares.map(([sx, sy], index) => (
-            <rect
-              strokeWidth="0"
-              key={index}
-              width={width + 1}
-              height={height + 1}
-              x={sx * width}
-              y={sy * height}
-            />
-          ))}
-        </svg>
-      )}
-    </svg>
-  );
-}
-
-function genRandomPattern(length = 5): number[][] {
-  return Array.from({ length }, () => [
-    Math.floor(Math.random() * 4) + 7,
-    Math.floor(Math.random() * 6) + 1,
-  ]);
-}
-
-type FeatureCardProps = React.ComponentProps<"div"> & { feature: Feature };
-
-function FeatureCard({ feature, className, ...props }: FeatureCardProps) {
-  const [p, setP] = React.useState<number[][]>([]);
-
-  React.useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setP(genRandomPattern());
-  }, []);
-
-  return (
-    <div className={cn("relative overflow-hidden p-6", className)} {...props}>
-      <div className="pointer-events-none absolute top-0 left-1/2 -mt-2 -ml-20 h-full w-full [mask-image:linear-gradient(white,transparent)]">
-        <div className="from-foreground/5 to-foreground/1 absolute inset-0 bg-gradient-to-r [mask-image:radial-gradient(farthest-side_at_top,white,transparent)] opacity-100">
-          <GridPattern
-            width={20}
-            height={20}
-            x="-12"
-            y="4"
-            squares={p}
-            className="fill-foreground/5 stroke-foreground/25 absolute inset-0 h-full w-full mix-blend-overlay"
-          />
-        </div>
-      </div>
-      <feature.icon
-        className="text-foreground/75 size-6"
-        strokeWidth={1}
-        aria-hidden
-      />
-      <h3 className="mt-10 text-sm md:text-base font-medium">{feature.title}</h3>
-      <p className="text-muted-foreground relative z-20 mt-2 text-xs font-light">
-        {feature.description}
-      </p>
-    </div>
-  );
-}
-
 export default function Features() {
   const sectionRef = useRef<HTMLElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
-  const cardsRef = useRef<HTMLDivElement>(null);
+  const listRef = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
     if (headerRef.current) {
       gsap.from(headerRef.current, {
-        y: 20,
+        y: 30,
         opacity: 0,
-        duration: 0.6,
-        ease: "power2.out",
+        duration: 0.9,
+        ease: "power3.out",
         scrollTrigger: {
           trigger: headerRef.current,
           start: "top 80%",
         },
       });
     }
-    if (cardsRef.current?.children.length) {
-      gsap.from(Array.from(cardsRef.current.children), {
+
+    if (listRef.current?.children.length) {
+      gsap.from(Array.from(listRef.current.children), {
         y: 40,
         opacity: 0,
-        stagger: 0.12,
-        duration: 0.7,
-        ease: "power2.out",
+        stagger: 0.15,
+        duration: 0.9,
+        ease: "power3.out",
         scrollTrigger: {
-          trigger: cardsRef.current,
+          trigger: listRef.current,
           start: "top 75%",
         },
       });
@@ -172,27 +72,130 @@ export default function Features() {
     <section
       id="tinh-nang"
       ref={sectionRef}
-      className="py-16 md:py-32"
+      style={{
+        background: "#000000",
+        width: "100%",
+        padding: "clamp(80px, 12vh, 160px) clamp(24px, 5vw, 80px)",
+      }}
     >
-      <div className="mx-auto w-full max-w-5xl space-y-8 px-4">
-        <div ref={headerRef} className="mx-auto max-w-3xl text-center">
-          <h2 className="text-3xl font-bold tracking-wide text-balance md:text-4xl lg:text-5xl">
-            Mọi thứ bạn cần để vận hành thông minh hơn
-          </h2>
-          <p className="text-muted-foreground mt-4 text-sm tracking-wide text-balance md:text-base">
-            Từ giám sát đến bảo trì — tất cả trong một nền tảng.
-          </p>
-        </div>
-
-        <div
-          ref={cardsRef}
-          className="grid grid-cols-1 divide-x divide-y divide-dashed border border-dashed sm:grid-cols-2"
+      {/* ── Section header ──────────────────────────────────────── */}
+      <div
+        ref={headerRef}
+        style={{
+          maxWidth: "1100px",
+          margin: "0 auto",
+          marginBottom: "80px",
+        }}
+      >
+        {/* Section label */}
+        <p
+          className="sx-micro"
+          style={{
+            marginBottom: "24px",
+            opacity: 0.8,
+            letterSpacing: "2px",
+          }}
         >
-          {features.map((feature, i) => (
-            <FeatureCard key={i} feature={feature} />
-          ))}
-        </div>
+          Tính năng
+        </p>
+
+        {/* Main heading */}
+        <h2
+          className="sx-heading"
+          style={{ maxWidth: "640px", marginBottom: "0" }}
+        >
+          Mọi thứ bạn cần
+          <br />
+          để vận hành thông minh hơn
+        </h2>
       </div>
+
+      {/* ── Feature rows — NO cards, text on black ──────────────── */}
+      <div
+        ref={listRef}
+        style={{
+          maxWidth: "1100px",
+          margin: "0 auto",
+        }}
+      >
+        {features.map((f, i) => (
+          <div key={f.index}>
+            {/* Divider */}
+            <div className="sx-divider" />
+
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "80px 1fr 2fr",
+                gap: "40px",
+                padding: "48px 0",
+                alignItems: "start",
+              }}
+              className="feature-row"
+            >
+              {/* Index */}
+              <span
+                className="sx-micro"
+                style={{ opacity: 0.6, paddingTop: "4px" }}
+              >
+                {f.index}
+              </span>
+
+              {/* Title */}
+              <h3
+                className="sx-subheading"
+                style={{
+                  margin: 0,
+                  fontSize: "clamp(16px, 2vw, 22px)",
+                }}
+              >
+                {f.title}
+              </h3>
+
+              {/* Description */}
+              <p
+                className="sx-body"
+                style={{
+                  margin: 0,
+                  fontSize: "14px",
+                  letterSpacing: "0.4px",
+                  lineHeight: 1.8,
+                  maxWidth: "560px",
+                }}
+              >
+                {f.description}
+              </p>
+            </div>
+
+            {/* Last row — bottom divider */}
+            {i === features.length - 1 && <div className="sx-divider" />}
+          </div>
+        ))}
+      </div>
+
+      {/* ── Responsive feature rows ──────────────────────────────── */}
+      <style>{`
+        @media (max-width: 768px) {
+          .feature-row {
+            grid-template-columns: 40px 1fr !important;
+            grid-template-rows: auto auto;
+            gap: 16px !important;
+            padding: 36px 0 !important;
+          }
+          .feature-row > *:nth-child(3) {
+            grid-column: 2 / 3;
+          }
+        }
+        @media (max-width: 500px) {
+          .feature-row {
+            grid-template-columns: 1fr !important;
+            gap: 12px !important;
+          }
+          .feature-row > *:nth-child(3) {
+            grid-column: 1;
+          }
+        }
+      `}</style>
     </section>
   );
 }

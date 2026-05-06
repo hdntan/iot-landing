@@ -16,51 +16,199 @@
   --color-ring: var(--ring);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-barlow);
 }
 
+/* ─── SpaceX Design System ───────────────────────────────────────── */
 :root {
-  --background: hsl(0 0% 3.9%);
-  --foreground: hsl(0 0% 98%);
-  --card: hsl(0 0% 7%);
-  --card-foreground: hsl(0 0% 98%);
-  --primary: hsl(24 95% 53%);
-  --primary-foreground: hsl(0 0% 9%);
-  --muted: hsl(0 0% 14.9%);
-  --muted-foreground: hsl(0 0% 63.9%);
-  --border: hsl(0 0% 14.9%);
-  --input: hsl(0 0% 14.9%);
-  --ring: hsl(24 95% 53%);
-  --accent: hsl(0 0% 14.9%);
-  --accent-foreground: hsl(0 0% 98%);
+  /* Core palette */
+  --spacex-black:        #000000;
+  --spacex-white:        #f0f0fa;   /* spectral white — slight blue-violet tint */
+  --spacex-white-100:    #ffffff;
+  --spacex-ghost-bg:     rgba(240, 240, 250, 0.1);
+  --spacex-ghost-border: rgba(240, 240, 250, 0.35);
+  --spacex-overlay:      rgba(0, 0, 0, 0.5);
+  --spacex-divider:      rgba(240, 240, 250, 0.12);
+
+  /* Tailwind compat aliases */
+  --background:          #000000;
+  --foreground:          #f0f0fa;
+  --card:                #000000;
+  --card-foreground:     #f0f0fa;
+  --primary:             #f0f0fa;
+  --primary-foreground:  #000000;
+  --muted:               #0a0a0a;
+  --muted-foreground:    rgba(240, 240, 250, 0.55);
+  --border:              rgba(240, 240, 250, 0.12);
+  --input:               rgba(240, 240, 250, 0.12);
+  --ring:                #f0f0fa;
+  --accent:              rgba(240, 240, 250, 0.08);
+  --accent-foreground:   #f0f0fa;
+
+  /* Spacing */
+  --size-container:    1400px;
+  --container-padding: 2em;
+  --section-padding:   4em;
+  --gap:               1.5em;
+  --cubic-default:     cubic-bezier(0.65, 0.05, 0, 1);
+}
+
+/* ─── Base ───────────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
 }
 
 html {
   scroll-behavior: smooth;
+  background: var(--spacex-black);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-geist-sans, Arial, Helvetica, sans-serif);
+  background: var(--spacex-black);
+  color: var(--spacex-white);
+  font-family: var(--font-barlow, Arial, Verdana, sans-serif);
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Custom properties for new components */
-:root {
-  --color-primary: var(--primary);
-  --color-dark: #131313;
-  --color-neutral-100: #f5f5f5;
-  --color-neutral-200: #e5e5e5;
-  --color-neutral-300: #d4d4d4;
-  --color-neutral-800: #262626;
-  --size-container: 1400px;
-  --container-padding: 2em;
-  --section-padding: 4em;
-  --gap: 1.5em;
-  --cubic-default: cubic-bezier(0.65, 0.05, 0, 1);
+/* ─── SpaceX Typography System ───────────────────────────────────── */
+.sx-display {
+  font-size: clamp(36px, 6vw, 64px);
+  font-weight: 700;
+  line-height: 1.0;
+  letter-spacing: 0.96px;
+  text-transform: uppercase;
+  color: var(--spacex-white);
 }
 
+.sx-heading {
+  font-size: clamp(28px, 4vw, 48px);
+  font-weight: 700;
+  line-height: 1.0;
+  letter-spacing: 0.96px;
+  text-transform: uppercase;
+  color: var(--spacex-white);
+}
+
+.sx-subheading {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: 0.96px;
+  text-transform: uppercase;
+  color: var(--spacex-white);
+}
+
+.sx-nav {
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 0.94;
+  letter-spacing: 1.17px;
+  text-transform: uppercase;
+  color: var(--spacex-white);
+}
+
+.sx-body {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.65;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+  color: rgba(240, 240, 250, 0.85);
+}
+
+.sx-caption {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.0;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: rgba(240, 240, 250, 0.7);
+}
+
+.sx-micro {
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 0.94;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: rgba(240, 240, 250, 0.65);
+}
+
+.sx-number {
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 700;
+  line-height: 1.0;
+  letter-spacing: 0.96px;
+  text-transform: uppercase;
+  color: var(--spacex-white);
+}
+
+/* ─── Ghost Button ───────────────────────────────────────────────── */
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--spacex-ghost-bg);
+  color: var(--spacex-white);
+  border: 1px solid var(--spacex-ghost-border);
+  border-radius: 32px;
+  padding: 16px 36px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1.17px;
+  text-transform: uppercase;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  white-space: nowrap;
+}
+
+.btn-ghost:hover {
+  background: rgba(240, 240, 250, 0.18);
+  color: var(--spacex-white-100);
+  border-color: rgba(240, 240, 250, 0.55);
+}
+
+.btn-ghost:active {
+  background: rgba(240, 240, 250, 0.25);
+}
+
+/* ─── Section Utilities ──────────────────────────────────────────── */
+.sx-section {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background: var(--spacex-black);
+  overflow: hidden;
+}
+
+.sx-section-inner {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 120px 60px;
+}
+
+@media (max-width: 768px) {
+  .sx-section-inner {
+    padding: 80px 24px;
+  }
+}
+
+/* ─── Divider ────────────────────────────────────────────────────── */
+.sx-divider {
+  width: 100%;
+  height: 1px;
+  background: var(--spacex-divider);
+  border: none;
+}
+
+/* ─── Animations ─────────────────────────────────────────────────── */
 @keyframes fadeInUp {
   from {
     opacity: 0;

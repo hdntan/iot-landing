@@ -31,12 +31,11 @@ export default function Footer() {
   const footerRef = useRef<HTMLElement>(null);
 
   useGSAP(() => {
-    if (!footerRef.current?.children.length) return;
-    gsap.from(Array.from(footerRef.current.children), {
+    if (!footerRef.current) return;
+    gsap.from(footerRef.current, {
       y: 20,
       opacity: 0,
-      stagger: 0.1,
-      duration: 0.6,
+      duration: 0.8,
       ease: "power2.out",
       scrollTrigger: {
         trigger: footerRef.current,
@@ -49,67 +48,130 @@ export default function Footer() {
     <footer
       id="lien-he"
       ref={footerRef}
-      className="relative w-full max-w-6xl mx-auto flex flex-col items-center justify-center rounded-t-4xl border-t border-border bg-[radial-gradient(35%_128px_at_50%_0%,theme(backgroundColor.white/5%),transparent)] px-6 py-12 lg:py-16"
+      style={{
+        background: "#000000",
+        borderTop: "1px solid rgba(240,240,250,0.12)",
+        padding: "clamp(64px, 10vh, 120px) clamp(24px, 5vw, 80px)",
+      }}
     >
-      <div className="bg-foreground/20 absolute top-0 right-1/2 left-1/2 h-px w-1/3 -translate-x-1/2 -translate-y-1/2 rounded-full blur" />
-
-      <div className="grid w-full gap-8 xl:grid-cols-3 xl:gap-8">
-        {/* Brand */}
-        <div className="space-y-4">
-          <div className="text-xl font-semibold text-foreground">
-            ☕ Coffee IoT
-          </div>
-          <p className="text-muted-foreground text-sm">
-            Vận hành thông minh hơn mỗi ngày.
+      <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
+        {/* ── Top: CTA block ─────────────────────────────────────── */}
+        <div
+          style={{
+            paddingBottom: "64px",
+            marginBottom: "64px",
+            borderBottom: "1px solid rgba(240,240,250,0.12)",
+          }}
+        >
+          <p
+            className="sx-micro"
+            style={{ marginBottom: "24px", opacity: 0.8, letterSpacing: "2px" }}
+          >
+            Liên hệ
           </p>
-          <div className="flex gap-4 mt-4">
-            <a
-              href="#"
-              aria-label="Facebook"
-              className="text-zinc-400 hover:text-primary transition-colors"
-            >
-              {/* Facebook icon */}
-              <svg className="size-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden>
-                <path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" />
-              </svg>
-            </a>
-            <a
-              href="#"
-              aria-label="LinkedIn"
-              className="text-zinc-400 hover:text-primary transition-colors"
-            >
-              {/* LinkedIn icon */}
-              <svg className="size-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden>
-                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-              </svg>
-            </a>
-          </div>
-          <p className="text-muted-foreground text-sm mt-4">
-            © 2026 Coffee IoT. All rights reserved.
-          </p>
+          <h2
+            className="sx-heading"
+            style={{ maxWidth: "600px", marginBottom: "36px" }}
+          >
+            Sẵn sàng vận hành
+            <br />
+            thông minh hơn?
+          </h2>
+          <a 
+            href="https://dimori.net/en" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="btn-ghost"
+          >
+            Đặt lịch Demo
+          </a>
         </div>
 
-        {/* Links */}
-        <div className="mt-10 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0">
+        {/* ── Bottom: brand + links ───────────────────────────────── */}
+        <div
+          className="footer-grid"
+          style={{
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr 1fr",
+            gap: "40px",
+            alignItems: "start",
+          }}
+        >
+          {/* Brand */}
+          <div>
+            <p
+              style={{
+                fontSize: "13px",
+                fontWeight: 700,
+                letterSpacing: "2px",
+                textTransform: "uppercase",
+                color: "#f0f0fa",
+                marginBottom: "12px",
+              }}
+            >
+              Coffee IoT
+            </p>
+            <p
+              className="sx-micro"
+              style={{ opacity: 0.7, lineHeight: 1.7, maxWidth: "200px" }}
+            >
+              Vận hành thông minh hơn mỗi ngày.
+            </p>
+          </div>
+
+          {/* Link columns */}
           {footerLinks.map((section) => (
             <div key={section.label}>
-              <h3 className="text-xs font-medium text-foreground uppercase tracking-wider">
+              <p
+                className="sx-micro"
+                style={{ opacity: 0.7, marginBottom: "20px", letterSpacing: "1.5px" }}
+              >
                 {section.label}
-              </h3>
-              <ul className="text-muted-foreground mt-4 space-y-2 text-sm">
+              </p>
+              <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "flex", flexDirection: "column", gap: "14px" }}>
                 {section.links.map((link) => (
                   <li key={link.title}>
                     {link.href.startsWith("#") ? (
                       <a
                         href={link.href}
-                        className="hover:text-foreground transition-colors duration-300"
+                        style={{
+                          color: "#f0f0fa",
+                          fontSize: "12px",
+                          fontWeight: 400,
+                          letterSpacing: "0.8px",
+                          textTransform: "uppercase",
+                          textDecoration: "none",
+                          opacity: 0.65,
+                          transition: "opacity 0.2s ease",
+                        }}
+                        onMouseEnter={(e) =>
+                          ((e.currentTarget as HTMLAnchorElement).style.opacity = "1")
+                        }
+                        onMouseLeave={(e) =>
+                          ((e.currentTarget as HTMLAnchorElement).style.opacity = "0.65")
+                        }
                       >
                         {link.title}
                       </a>
                     ) : (
                       <Link
                         href={link.href}
-                        className="hover:text-foreground transition-colors duration-300"
+                        style={{
+                          color: "#f0f0fa",
+                          fontSize: "12px",
+                          fontWeight: 400,
+                          letterSpacing: "0.8px",
+                          textTransform: "uppercase",
+                          textDecoration: "none",
+                          opacity: 0.65,
+                          transition: "opacity 0.2s ease",
+                        }}
+                        onMouseEnter={(e) =>
+                          ((e.currentTarget as HTMLAnchorElement).style.opacity = "1")
+                        }
+                        onMouseLeave={(e) =>
+                          ((e.currentTarget as HTMLAnchorElement).style.opacity = "0.65")
+                        }
                       >
                         {link.title}
                       </Link>
@@ -120,7 +182,45 @@ export default function Footer() {
             </div>
           ))}
         </div>
+
+        {/* ── Copyright bar ──────────────────────────────────────── */}
+        <div
+          style={{
+            marginTop: "64px",
+            paddingTop: "24px",
+            borderTop: "1px solid rgba(240,240,250,0.08)",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            flexWrap: "wrap",
+            gap: "16px",
+          }}
+        >
+          <p className="sx-micro" style={{ opacity: 0.3, margin: 0 }}>
+            © 2026 Coffee IoT. All rights reserved.
+          </p>
+          <p className="sx-micro" style={{ opacity: 0.3, margin: 0 }}>
+            Vietnam
+          </p>
+        </div>
       </div>
+
+      {/* Responsive footer grid */}
+      <style>{`
+        @media (max-width: 768px) {
+          .footer-grid {
+            grid-template-columns: 1fr 1fr !important;
+          }
+          .footer-grid > div:first-child {
+            grid-column: 1 / -1;
+          }
+        }
+        @media (max-width: 480px) {
+          .footer-grid {
+            grid-template-columns: 1fr !important;
+          }
+        }
+      `}</style>
     </footer>
   );
 }

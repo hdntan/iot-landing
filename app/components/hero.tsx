@@ -1,25 +1,16 @@
 "use client";
 
-import { useRef, useState, Suspense, lazy } from "react";
-import { ArrowRight } from "lucide-react";
-import gsap from "gsap";
+import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
-
-const Dithering = lazy(() =>
-  import("@paper-design/shaders-react").then((mod) => ({
-    default: mod.Dithering,
-  }))
-);
+import gsap from "gsap";
 
 const stats = [
-  { value: "500+", label: "máy đang kết nối" },
-  { value: "99.9%", label: "uptime đảm bảo" },
-  { value: "-30%", label: "chi phí bảo trì" },
+  { value: "500+", label: "Máy kết nối" },
+  { value: "99.9%", label: "Uptime đảm bảo" },
+  { value: "-30%", label: "Chi phí bảo trì" },
 ];
 
 export default function Hero() {
-  const [isHovered, setIsHovered] = useState(false);
-  const badgeRef = useRef<HTMLDivElement>(null);
   const headlineRef = useRef<HTMLHeadingElement>(null);
   const descRef = useRef<HTMLParagraphElement>(null);
   const statsRef = useRef<HTMLDivElement>(null);
@@ -27,7 +18,6 @@ export default function Hero() {
 
   useGSAP(() => {
     const targets = [
-      badgeRef.current,
       headlineRef.current,
       descRef.current,
       statsRef.current,
@@ -35,99 +25,155 @@ export default function Hero() {
     ].filter(Boolean);
     if (!targets.length) return;
     gsap.from(targets, {
-      y: 30,
+      y: 40,
       opacity: 0,
-      stagger: 0.15,
-      duration: 0.8,
+      stagger: 0.2,
+      duration: 1.4,
       ease: "power3.out",
-      delay: 0.2,
+      delay: 0.4,
     });
   }, []);
 
   return (
-    <section className="py-12 w-full flex justify-center items-center px-4 md:px-6">
+    <section
+      style={{
+        position: "relative",
+        width: "100%",
+        height: "100vh",
+        minHeight: "600px",
+        overflow: "hidden",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "flex-start",
+        justifyContent: "flex-end",
+      }}
+    >
+      {/* ── Background photography ─────────────────────────────── */}
       <div
-        className="w-full max-w-7xl relative"
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
+        style={{
+          position: "absolute",
+          inset: 0,
+          backgroundImage: "url('/images/hero-bg.jpg')",
+          backgroundSize: "cover",
+          backgroundPosition: "center 40%",
+          backgroundRepeat: "no-repeat",
+          zIndex: 0,
+        }}
+      />
+
+      {/* ── Cinematic dark overlay gradient ────────────────────── */}
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          background:
+            "linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.5) 45%, rgba(0,0,0,0.15) 100%)",
+          zIndex: 1,
+        }}
+      />
+
+      {/* ── Content — left-aligned, bottom-anchored ────────────── */}
+      <div
+        style={{
+          position: "relative",
+          zIndex: 2,
+          padding: "clamp(32px, 5vw, 80px) clamp(24px, 5vw, 80px)",
+          maxWidth: "820px",
+          paddingBottom: "clamp(48px, 8vh, 100px)",
+        }}
       >
-        <div className="relative overflow-hidden rounded-[48px] border border-border bg-card shadow-sm min-h-[600px] md:min-h-[680px] flex flex-col items-center justify-center duration-500">
-          <Suspense
-            fallback={<div className="absolute inset-0 bg-muted/20" />}
-          >
-            <div className="absolute inset-0 z-0 pointer-events-none opacity-30 mix-blend-screen">
-              <Dithering
-                colorBack="#00000000"
-                colorFront="#EC4E02"
-                shape="warp"
-                type="4x4"
-                speed={isHovered ? 0.6 : 0.15}
-                className="size-full"
-                minPixelRatio={1}
-              />
-            </div>
-          </Suspense>
+        {/* Headline */}
+        <h1
+          ref={headlineRef}
+          className="sx-display"
+          style={{ marginBottom: "20px" }}
+        >
+          Giám sát toàn bộ
+          <br />
+          máy pha cà phê,
+          <br />
+          từ xa.
+        </h1>
 
-          <div className="relative z-10 px-6 max-w-4xl mx-auto text-center flex flex-col items-center gap-6">
-            {/* Badge */}
-            <div
-              ref={badgeRef}
-              className="inline-flex items-center gap-2 rounded-full border border-primary/10 bg-primary/5 px-4 py-1.5 text-sm font-medium text-primary backdrop-blur-sm"
-            >
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
-              </span>
-              Nền tảng IoT cho chuỗi cà phê
-            </div>
+        {/* Description */}
+        <p
+          ref={descRef}
+          className="sx-body"
+          style={{
+            marginBottom: "36px",
+            maxWidth: "520px",
+            fontSize: "14px",
+            letterSpacing: "0.5px",
+          }}
+        >
+          Platform IoT B2B — theo dõi thiết bị real-time,
+          <br />
+          nhận cảnh báo sự cố và tối ưu vận hành.
+        </p>
 
-            {/* Headline */}
-            <h1
-              ref={headlineRef}
-              className="font-sans text-5xl md:text-7xl font-semibold tracking-tight text-foreground leading-[1.05]"
-            >
-              Giám sát toàn bộ <br />
-              <span className="text-foreground/80">máy pha cà phê, từ xa.</span>
-            </h1>
-
-            {/* Description */}
-            <p
-              ref={descRef}
-              className="text-muted-foreground text-lg md:text-xl max-w-2xl leading-relaxed"
-            >
-              Platform IoT B2B giúp chuỗi cà phê theo dõi thiết bị real-time,
-              nhận cảnh báo sự cố và tối ưu vận hành.
-            </p>
-
-            {/* Stats */}
-            <div
-              ref={statsRef}
-              className="flex flex-wrap justify-center gap-8 mt-2"
-            >
-              {stats.map((s) => (
-                <div key={s.label} className="text-center">
-                  <div className="text-2xl font-bold text-primary">
-                    {s.value}
-                  </div>
-                  <div className="text-xs text-muted-foreground mt-0.5">
-                    {s.label}
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* CTA */}
-            <div ref={ctaRef}>
-              <a
-                href="#lien-he"
-                className="group inline-flex h-14 items-center justify-center gap-3 overflow-hidden rounded-full bg-primary px-12 text-base font-medium text-primary-foreground transition-all duration-300 hover:bg-primary/90 hover:scale-105 active:scale-95"
+        {/* Stats */}
+        <div
+          ref={statsRef}
+          style={{
+            display: "flex",
+            gap: "clamp(24px, 5vw, 56px)",
+            marginBottom: "40px",
+          }}
+        >
+          {stats.map((s) => (
+            <div key={s.label}>
+              <div
+                style={{
+                  fontSize: "clamp(22px, 3vw, 32px)",
+                  fontWeight: 700,
+                  letterSpacing: "0.96px",
+                  textTransform: "uppercase",
+                  color: "#f0f0fa",
+                  lineHeight: 1,
+                }}
               >
-                <span>Đặt lịch Demo</span>
-                <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
-              </a>
+                {s.value}
+              </div>
+              <div
+                className="sx-micro"
+                style={{ marginTop: "6px", opacity: 0.6 }}
+              >
+                {s.label}
+              </div>
             </div>
-          </div>
+          ))}
         </div>
+
+        {/* CTA */}
+        <div ref={ctaRef}>
+          <a href="https://dimori.net/en" target="_blank" rel="noopener noreferrer" className="btn-ghost">
+            Đặt lịch Demo
+          </a>
+        </div>
+      </div>
+
+      {/* ── Scroll indicator ───────────────────────────────────── */}
+      <div
+        style={{
+          position: "absolute",
+          bottom: "32px",
+          right: "clamp(24px, 5vw, 80px)",
+          zIndex: 2,
+          display: "flex",
+          alignItems: "center",
+          gap: "12px",
+        }}
+      >
+        <span className="sx-micro" style={{ opacity: 0.4 }}>
+          Scroll
+        </span>
+        <div
+          style={{
+            width: "40px",
+            height: "1px",
+            background: "rgba(240,240,250,0.3)",
+          }}
+        />
       </div>
     </section>
   );
