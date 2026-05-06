@@ -6,6 +6,7 @@ import UseCases from "@/app/components/use-cases";
 import Testimonials from "@/app/components/testimonials";
 import Pricing from "@/app/components/pricing";
 import Faq from "@/app/components/faq";
+import Stats from "@/app/components/stats";
 import Footer from "@/app/components/footer";
 
 export default function Home() {
@@ -15,6 +16,7 @@ export default function Home() {
       <main>
         <Hero />
         <Features />
+        {/* <Stats /> */}
         <HowItWorks />
         <UseCases />
         <Testimonials />

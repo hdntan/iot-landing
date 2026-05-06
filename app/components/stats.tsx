@@ -156,7 +156,7 @@ export default function Stats() {
               </div>
 
               {/* Label */}
-              <p className="sx-micro" style={{ opacity: 0.55, lineHeight: 1.5 }}>
+              <p className="sx-micro" style={{ opacity: 0.8, lineHeight: 1.5 }}>
                 {stat.label}
               </p>
             </div>
