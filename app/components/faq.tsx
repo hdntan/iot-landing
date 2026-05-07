@@ -79,24 +79,24 @@ CustomAccordionContent.displayName = "CustomAccordionContent";
 
 const faqs = [
   {
-    question: "Mô hình Pay-per-cup hoạt động như thế nào?",
-    answer: "Chúng tôi lắp đặt module IoT đọc dữ liệu chiết xuất (áp suất, thời gian, lưu lượng nước) vào máy pha. Bạn sẽ thu phí hoặc trả phí dựa trên số ly cà phê thực tế được pha ra, đảm bảo minh bạch tuyệt đối.",
+    question: "Shop có thể tự đăng ký tài khoản không?",
+    answer: "Không. Shop không thể tự đăng ký. Tài khoản Shop phải do Admin tạo và cấp phát. Nếu quên mật khẩu, Shop cũng cần liên hệ Admin để được cấp lại mật khẩu mới.",
   },
   {
-    question: "Có hỗ trợ các dòng máy pha cà phê cũ không?",
-    answer: "Có. Module của chúng tôi tương thích với 90% các dòng máy pha espresso bán tự động và tự động trên thị trường, kể cả những model cũ không có bo mạch điện tử thông minh.",
+    question: "Quy trình đăng ký máy diễn ra như thế nào?",
+    answer: "Admin nạp mã thiết bị vào hệ thống trước. Sau đó Shop kết nối wifi nội bộ và tạo mã định danh máy (ví dụ: MA-12345). Thiết bị IoT gửi dữ liệu xác nhận về, Shop chấp nhận kết nối là hoàn tất.",
   },
   {
-    question: "Làm sao để biết nhân viên không gian lận?",
-    answer: "Hệ thống liên tục đối chiếu số lượng ly pha được (dữ liệu IoT) với định lượng hạt cà phê tiêu hao. Bất kỳ sự sai lệch nào vượt mức cho phép sẽ kích hoạt cảnh báo gửi ngay đến quản lý.",
+    question: "Giờ sử dụng máy được tính như thế nào?",
+    answer: "Thời gian sử dụng chỉ được tính khi máy đang ở trạng thái trực tuyến (online) VÀ đang hoạt động. Dữ liệu được lưu trữ theo ngày và có thể xuất báo cáo theo tuần, tháng hoặc năm.",
   },
   {
-    question: "Nếu mất kết nối Wifi thì dữ liệu có bị mất?",
-    answer: "Không. Module được trang bị bộ nhớ đệm lưu trữ dữ liệu offline lên đến 72 giờ và sẽ tự động đồng bộ lên Cloud ngay khi có kết nối mạng trở lại.",
+    question: "Shop có thể quản lý máy của Shop khác không?",
+    answer: "Không. Hệ thống phân quyền RBAC đảm bảo mỗi Shop chỉ thấy và quản lý các máy thuộc sở hữu của mình. Chỉ Admin mới có quyền xem và điều khiển toàn bộ máy trong hệ thống.",
   },
   {
-    question: "Tôi có thể khóa máy pha cà phê từ xa không?",
-    answer: "Có. Tính năng bảo vệ tài sản cho phép bạn vô hiệu hóa (khóa) máy ngay trên điện thoại nếu phát hiện thiết bị bị di dời trái phép hoặc đối tác trễ hạn thanh toán.",
+    question: "Lệnh bật/tắt máy được gửi đi như thế nào?",
+    answer: "Lệnh điều khiển được gửi qua giao thức MQTT thông qua broker HiveMQ. Thiết bị IoT gắn trên máy nhận tín hiệu và thực thi lệnh gần như tức thì, hỗ trợ cả kết nối Wifi và 4G.",
   },
 ];
 

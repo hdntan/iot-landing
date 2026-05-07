@@ -79,9 +79,9 @@ export default function Footer() {
             className="sb-display"
             style={{ maxWidth: "600px", marginBottom: "36px", color: "var(--white)" }}
           >
-            Sẵn sàng chuyển đổi
+            Sẵn sàng quản lý máy
             <br />
-            mô hình kinh doanh?
+            thông minh hơn?
           </h2>
           <a
             href="https://dimori.net/en"
@@ -144,7 +144,7 @@ export default function Footer() {
               className="sb-small"
               style={{ lineHeight: 1.6, maxWidth: "200px", color: "rgba(255,255,255,0.8)" }}
             >
-              Nền tảng quản lý và cho thuê máy pha cà phê thông minh (CaaS).
+              Nền tảng quản lý máy pha cà phê thông minh — Admin & Shop.
             </p>
           </div>
 

@@ -83,29 +83,29 @@ function CupsChart() {
 ───────────────────────────────────────────────────────────── */
 const cases = [
   {
-    sector: "Cho thuê thiết bị",
-    title: "Mô hình kinh doanh Pay-per-cup.",
+    sector: "Admin",
+    title: "Quản lý toàn bộ hệ thống.",
     description:
-      "Tối đa hóa doanh thu từ việc cho thuê máy. Thu tiền dựa trên số ly cà phê thực tế pha ra, không lo thất thoát hay tranh chấp với đối tác.",
+      "Admin có toàn quyền: quản lý tất cả máy, tạo tài khoản Shop, xem báo cáo giờ sử dụng và điều khiển bật/tắt bất kỳ máy nào trong hệ thống.",
     cta: "Tìm hiểu thêm",
     href: "https://dimori.net/en",
     image: "/images/usecase-chain.jpg",
   },
   {
-    sector: "Chuỗi cà phê & Franchise",
-    title: "Kiểm soát chất lượng đồng đều.",
+    sector: "Shop",
+    title: "Quản lý máy của cửa hàng.",
     description:
-      "Giám sát nhiệt độ, áp suất chiết xuất ở hàng trăm chi nhánh từ xa. Đảm bảo mọi ly cà phê đều đạt chuẩn, đồng thời bảo vệ máy móc.",
+      "Shop tự tạo mã định danh máy, quản lý thông tin khách thuê, theo dõi trạng thái và điều khiển bật/tắt các máy thuộc sở hữu của mình.",
     cta: "Khám phá",
     href: "https://dimori.net/en",
     image: "/images/usecase-hotel.jpg",
   },
   {
-    sector: "Văn phòng & Khách sạn",
-    title: "Dịch vụ tự động 24/7.",
+    sector: "Kỹ thuật viên",
+    title: "Cài đặt & bàn giao thiết bị.",
     description:
-      "Máy tự phục vụ hoạt động liên tục. Quản lý cảnh báo hết hạt, hỏng hóc tự động gửi đến kỹ thuật viên trước khi khách phàn nàn.",
-    cta: "Xem giải pháp",
+      "Kỹ thuật viên kết nối wifi nội bộ, nhập thông tin khách hàng (Tên, SĐT, Địa chỉ) trực tiếp trên thiết bị. Dữ liệu tự động đồng bộ về hệ thống.",
+    cta: "Xem quy trình",
     href: "https://dimori.net/en",
     image: "/images/usecase-office.jpg",
   },
@@ -206,7 +206,7 @@ export default function UseCases() {
               margin: "0 auto 20px",
             }}
           >
-            Giải pháp cho mọi mô hình
+            Giải pháp cho mọi vai trò
           </h2>
           <p
             style={{
@@ -218,7 +218,7 @@ export default function UseCases() {
               letterSpacing: "-0.01em",
             }}
           >
-            Từ chuỗi nhỏ đến tập đoàn — Coffee IoT vận hành cùng bạn.
+            Admin, Shop hay Kỹ thuật viên — CoffeeIOT vận hành cùng bạn.
           </p>
         </AnimCell>
 
@@ -342,7 +342,7 @@ export default function UseCases() {
                   margin: 0,
                 }}
               >
-                50,000+
+                1,000+
               </p>
               <p
                 style={{
@@ -352,7 +352,7 @@ export default function UseCases() {
                   marginTop: "8px",
                 }}
               >
-                Ly cà phê được theo dõi mỗi ngày trên nền tảng Coffee IoT
+                Máy pha cà phê được hỗ trợ quản lý đồng thời trên nền tảng CoffeeIOT
               </p>
             </div>
           </AnimCell>
