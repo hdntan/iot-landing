@@ -10,27 +10,27 @@ gsap.registerPlugin(ScrollTrigger);
 const features = [
   {
     index: "01",
-    title: "Giám sát Real-time",
+    title: "Kiểm soát 100% tài sản",
     description:
-      "Theo dõi trạng thái máy qua Wifi/4G 24/7. Nhiệt độ, áp suất, lưu lượng cập nhật mỗi 30 giây.",
+      "Giám sát vị trí và tình trạng hoạt động của máy. Tự động khóa máy từ xa nếu phát hiện di dời trái phép hoặc trễ hạn thanh toán.",
   },
   {
     index: "02",
-    title: "Cảnh báo Tức thì",
+    title: "Minh bạch từng ly cà phê",
     description:
-      "Nhận thông báo sự cố qua Zalo và email ngay khi máy gặp vấn đề. Phản hồi trước khi khách hàng phàn nàn.",
+      "Dữ liệu chiết xuất (nhiệt độ, áp suất, thời gian) được gửi về hệ thống mỗi 30 giây. Đếm chính xác số ly pha để tính phí Pay-per-cup.",
   },
   {
     index: "03",
-    title: "Báo cáo Doanh thu",
+    title: "Báo cáo doanh thu & nguyên liệu",
     description:
-      "Thống kê tiêu thụ nguyên liệu, doanh thu từng máy theo ngày / tuần / tháng. Export PDF tự động.",
+      "Thống kê mức tiêu thụ hạt cà phê và đối chiếu với số ly bán ra. Phát hiện hao hụt, gian lận tại điểm bán một cách tự động.",
   },
   {
     index: "04",
-    title: "Bảo trì Phòng ngừa AI",
+    title: "Bảo trì phòng ngừa bằng AI",
     description:
-      "AI dự đoán hỏng hóc trước 7–14 ngày. Lên lịch bảo trì tự động, giảm 30% chi phí sửa chữa.",
+      "Phân tích dữ liệu bơm, thanh nhiệt để dự đoán hỏng hóc trước 14 ngày. Chủ động thay thế linh kiện, đảm bảo máy luôn sẵn sàng.",
   },
 ];
 
@@ -41,30 +41,42 @@ export default function Features() {
 
   useGSAP(() => {
     if (headerRef.current) {
-      gsap.from(headerRef.current, {
-        y: 30,
-        opacity: 0,
-        duration: 0.9,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: headerRef.current,
-          start: "top 80%",
+      gsap.fromTo(headerRef.current, 
+        {
+          y: 30,
+          opacity: 0,
         },
-      });
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.9,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: headerRef.current,
+            start: "top 80%",
+          },
+        }
+      );
     }
 
     if (listRef.current?.children.length) {
-      gsap.from(Array.from(listRef.current.children), {
-        y: 40,
-        opacity: 0,
-        stagger: 0.15,
-        duration: 0.9,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: listRef.current,
-          start: "top 75%",
+      gsap.fromTo(Array.from(listRef.current.children), 
+        {
+          y: 40,
+          opacity: 0,
         },
-      });
+        {
+          y: 0,
+          opacity: 1,
+          stagger: 0.15,
+          duration: 0.9,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: listRef.current,
+            start: "top 75%",
+          },
+        }
+      );
     }
   }, []);
 
@@ -73,104 +85,114 @@ export default function Features() {
       id="tinh-nang"
       ref={sectionRef}
       style={{
-        background: "#000000",
+        background: "var(--neutral-warm)",
         width: "100%",
-        padding: "clamp(80px, 12vh, 160px) clamp(24px, 5vw, 80px)",
+        padding: "clamp(80px, 12vh, 120px) var(--outer-gutter)",
       }}
     >
-      {/* ── Section header ──────────────────────────────────────── */}
       <div
-        ref={headerRef}
         style={{
-          maxWidth: "1100px",
+          maxWidth: "1200px",
           margin: "0 auto",
-          marginBottom: "80px",
         }}
       >
-        {/* Section label */}
-        <p
-          className="sx-micro"
+        {/* ── Section header ──────────────────────────────────────── */}
+        <div
+          ref={headerRef}
           style={{
-            marginBottom: "24px",
-            opacity: 0.8,
-            letterSpacing: "2px",
+            marginBottom: "80px",
           }}
         >
-          Tính năng
-        </p>
+          <p
+            className="sb-small"
+            style={{
+              marginBottom: "24px",
+              fontWeight: 600,
+              color: "var(--starbucks-green)",
+              textTransform: "uppercase",
+              letterSpacing: "1px",
+            }}
+          >
+            Tính năng
+          </p>
+          <h2
+            className="sb-display"
+            style={{ 
+              maxWidth: "640px", 
+              margin: "0",
+              color: "var(--text-main)" 
+            }}
+          >
+            Mọi thứ bạn cần để
+            <br />
+            vận hành thông minh hơn
+          </h2>
+        </div>
 
-        {/* Main heading */}
-        <h2
-          className="sx-heading"
-          style={{ maxWidth: "640px", marginBottom: "0" }}
-        >
-          Mọi thứ bạn cần
-          <br />
-          để vận hành thông minh hơn
-        </h2>
-      </div>
+        {/* ── Feature rows — NO cards, Starbucks text on cream ──────────────── */}
+        <div ref={listRef}>
+          {features.map((f, i) => (
+            <div key={f.index}>
+              {/* Divider */}
+              <div style={{ height: "1px", background: "#d1cec5" }} />
 
-      {/* ── Feature rows — NO cards, text on black ──────────────── */}
-      <div
-        ref={listRef}
-        style={{
-          maxWidth: "1100px",
-          margin: "0 auto",
-        }}
-      >
-        {features.map((f, i) => (
-          <div key={f.index}>
-            {/* Divider */}
-            <div className="sx-divider" />
-
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "80px 1fr 2fr",
-                gap: "40px",
-                padding: "48px 0",
-                alignItems: "start",
-              }}
-              className="feature-row"
-            >
-              {/* Index */}
-              <span
-                className="sx-micro"
-                style={{ paddingTop: "4px" }} // Removed opacity: 0.6
-              >
-                {f.index}
-              </span>
-
-              {/* Title */}
-              <h3
-                className="sx-subheading"
+              <div
                 style={{
-                  margin: 0,
-                  fontSize: "clamp(16px, 2vw, 22px)",
+                  display: "grid",
+                  gridTemplateColumns: "80px 1fr 2fr",
+                  gap: "40px",
+                  padding: "48px 0",
+                  alignItems: "start",
                 }}
+                className="feature-row"
               >
-                {f.title}
-              </h3>
+                {/* Index */}
+                <span
+                  style={{
+                    paddingTop: "4px",
+                    color: "var(--starbucks-green)",
+                    fontWeight: 700,
+                    fontSize: "1.6rem",
+                    letterSpacing: "1px"
+                  }}
+                >
+                  {f.index}
+                </span>
 
-              {/* Description */}
-              <p
-                className="sx-body"
-                style={{
-                  margin: 0,
-                  fontSize: "15px", // Increased from 14px
-                  letterSpacing: "0.4px",
-                  lineHeight: 1.8,
-                  maxWidth: "560px",
-                }}
-              >
-                {f.description}
-              </p>
+                {/* Title */}
+                <h3
+                  style={{
+                    margin: 0,
+                    fontSize: "clamp(20px, 2.5vw, 28px)",
+                    fontWeight: 600,
+                    letterSpacing: "-0.01em",
+                    color: "var(--text-main)",
+                  }}
+                >
+                  {f.title}
+                </h3>
+
+                {/* Description */}
+                <p
+                  className="sb-body"
+                  style={{
+                    margin: 0,
+                    color: "var(--text-secondary)",
+                    lineHeight: 1.6,
+                    maxWidth: "560px",
+                  }}
+                >
+                  {f.description}
+                </p>
+              </div>
+
+              {/* Last row — bottom divider */}
+              {i === features.length - 1 && (
+                <div style={{ height: "1px", background: "#d1cec5" }} />
+              )}
             </div>
-
-            {/* Last row — bottom divider */}
-            {i === features.length - 1 && <div className="sx-divider" />}
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
 
       {/* ── Responsive feature rows ──────────────────────────────── */}

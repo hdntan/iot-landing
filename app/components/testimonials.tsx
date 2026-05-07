@@ -10,24 +10,24 @@ gsap.registerPlugin(ScrollTrigger);
 const testimonials = [
   {
     quote:
-      "Giảm 40% cuộc gọi hỗ trợ sau 2 tháng. Technician biết máy hỏng trước khi khách phàn nàn.",
+      "Chuyển sang mô hình Pay-per-cup giúp chúng tôi dễ dàng mở rộng mạng lưới cho thuê máy mà không lo thất thoát doanh thu.",
     author: "Nguyễn Minh Tuấn",
     role: "Giám đốc Vận hành",
     company: "Chuỗi cà phê — 28 cơ sở",
   },
   {
     quote:
-      "Dashboard trực quan, báo cáo tự động giúp tôi theo dõi 15 máy mà không cần đến tận nơi.",
+      "Dashboard trực quan, báo cáo tự động giúp tôi kiểm soát nguyên liệu tiêu thụ của 15 điểm bán một cách chính xác.",
     author: "Trần Thị Lan",
     role: "Quản lý F&B",
     company: "Khách sạn 5 sao — Đà Nẵng",
   },
   {
     quote:
-      "ROI dương sau 3 tháng. Chi phí bảo trì giảm rõ rệt nhờ AI phát hiện sự cố sớm.",
+      "Máy tự động khóa khi phát hiện di dời trái phép. Tính năng này giúp chúng tôi hoàn toàn yên tâm khi cho thuê thiết bị.",
     author: "Lê Văn Hùng",
     role: "CEO",
-    company: "Coffee franchise — 12 chi nhánh",
+    company: "Dịch vụ CaaS — 50+ máy",
   },
 ];
 
@@ -37,30 +37,42 @@ export default function Testimonials() {
 
   useGSAP(() => {
     if (headerRef.current) {
-      gsap.from(headerRef.current, {
-        y: 30,
-        opacity: 0,
-        duration: 0.9,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: headerRef.current,
-          start: "top 80%",
+      gsap.fromTo(headerRef.current, 
+        {
+          y: 30,
+          opacity: 0,
         },
-      });
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.9,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: headerRef.current,
+            start: "top 80%",
+          },
+        }
+      );
     }
 
     if (gridRef.current?.children.length) {
-      gsap.from(Array.from(gridRef.current.children), {
-        y: 40,
-        opacity: 0,
-        stagger: 0.15,
-        duration: 0.9,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: gridRef.current,
-          start: "top 75%",
+      gsap.fromTo(Array.from(gridRef.current.children), 
+        {
+          y: 40,
+          opacity: 0,
         },
-      });
+        {
+          y: 0,
+          opacity: 1,
+          stagger: 0.15,
+          duration: 0.9,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: gridRef.current,
+            start: "top 75%",
+          },
+        }
+      );
     }
   }, []);
 
@@ -68,25 +80,28 @@ export default function Testimonials() {
     <section
       id="khach-hang"
       style={{
-        background: "#000000",
+        background: "var(--white)",
         width: "100%",
-        padding: "clamp(80px, 12vh, 160px) clamp(24px, 5vw, 80px)",
-        borderTop: "1px solid rgba(240,240,250,0.12)",
+        padding: "clamp(80px, 12vh, 120px) var(--outer-gutter)",
       }}
     >
-      <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
+      <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
         {/* ── Header ──────────────────────────────────────────────── */}
-        <div ref={headerRef} style={{ marginBottom: "80px" }}>
+        <div ref={headerRef} style={{ marginBottom: "64px", textAlign: "center" }}>
           <p
-            className="sx-micro"
-            style={{ marginBottom: "24px", letterSpacing: "2px" }} // Removed opacity: 0.8
+            className="sb-small"
+            style={{ 
+              marginBottom: "16px", 
+              fontWeight: 600, 
+              color: "var(--starbucks-green)",
+              textTransform: "uppercase",
+              letterSpacing: "1px" 
+            }}
           >
             Khách hàng
           </p>
-          <h2 className="sx-heading" style={{ maxWidth: "540px", marginBottom: "0" }}>
-            Họ nói gì
-            <br />
-            về chúng tôi
+          <h2 className="sb-display" style={{ maxWidth: "540px", margin: "0 auto", color: "var(--text-main)" }}>
+            Họ nói gì về chúng tôi
           </h2>
         </div>
 
@@ -96,44 +111,48 @@ export default function Testimonials() {
           className="testimonials-grid"
           style={{
             display: "grid",
-            gridTemplateColumns: "1fr 1fr 1fr",
-            gap: "0",
+            gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
+            gap: "32px",
           }}
         >
           {testimonials.map((t, i) => (
             <div
               key={t.author}
               style={{
-                paddingRight: i < testimonials.length - 1 ? "48px" : "0",
-                paddingLeft: i > 0 ? "48px" : "0",
-                borderRight:
-                  i < testimonials.length - 1
-                    ? "1px solid rgba(240,240,250,0.12)"
-                    : "none",
+                background: "var(--neutral-warm)",
+                borderRadius: "16px",
+                padding: "48px 32px",
+                display: "flex",
+                flexDirection: "column",
+                border: "1px solid #e7e7e7",
+                boxShadow: "0 4px 12px rgba(0,0,0,0.02), 0 1px 2px rgba(0,0,0,0.04)"
               }}
             >
               {/* Quote mark */}
               <div
                 style={{
-                  fontSize: "48px",
-                  lineHeight: 1,
-                  color: "rgba(240,240,250,0.15)",
+                  fontSize: "64px",
+                  lineHeight: 0.8,
+                  color: "var(--starbucks-green)",
+                  opacity: 0.2,
                   fontWeight: 700,
-                  marginBottom: "24px",
-                  letterSpacing: "-2px",
+                  marginBottom: "16px",
+                  fontFamily: "serif"
                 }}
               >
+                
               </div>
 
               {/* Quote text */}
               <p
-                className="sx-body"
+                className="sb-body"
                 style={{
-                  fontSize: "15px", // Increased from 14px
-                  lineHeight: 1.85,
-                  letterSpacing: "0.4px",
+                  color: "var(--text-main)",
+                  fontSize: "1.8rem",
+                  lineHeight: 1.6,
                   marginBottom: "40px",
-                  minHeight: "100px",
+                  flexGrow: 1,
+                  fontStyle: "italic"
                 }}
               >
                 {t.quote}
@@ -142,59 +161,54 @@ export default function Testimonials() {
               {/* Divider */}
               <div
                 style={{
-                  width: "32px",
+                  width: "100%",
                   height: "1px",
-                  background: "rgba(240,240,250,0.35)",
-                  marginBottom: "20px",
+                  background: "#e7e7e7",
+                  marginBottom: "24px",
                 }}
               />
 
               {/* Author */}
-              <p
-                style={{
-                  fontSize: "13px",
-                  fontWeight: 700,
-                  letterSpacing: "1.17px",
-                  textTransform: "uppercase",
-                  color: "#f0f0fa",
-                  marginBottom: "6px",
-                }}
-              >
-                {t.author}
-              </p>
-              <p className="sx-micro" style={{ opacity: 0.7, marginBottom: "4px" }}>
-                {t.role}
-              </p>
-              <p className="sx-micro" style={{ opacity: 0.6 }}>
-                {t.company}
-              </p>
+              <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
+                <div 
+                  style={{ 
+                    width: "48px", 
+                    height: "48px", 
+                    borderRadius: "50%", 
+                    background: "var(--starbucks-green)",
+                    color: "var(--white)",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    fontWeight: 600,
+                    fontSize: "1.6rem"
+                  }}
+                >
+                  {t.author.charAt(0)}
+                </div>
+                <div>
+                  <p
+                    style={{
+                      fontSize: "1.6rem",
+                      fontWeight: 700,
+                      color: "var(--text-main)",
+                      marginBottom: "4px",
+                    }}
+                  >
+                    {t.author}
+                  </p>
+                  <p className="sb-small" style={{ color: "var(--text-soft)", marginBottom: "2px" }}>
+                    {t.role}
+                  </p>
+                  <p className="sb-small" style={{ color: "var(--text-soft)", fontWeight: 500 }}>
+                    {t.company}
+                  </p>
+                </div>
+              </div>
             </div>
           ))}
         </div>
       </div>
-
-      {/* Responsive */}
-      <style>{`
-        @media (max-width: 768px) {
-          .testimonials-grid {
-            grid-template-columns: 1fr 1fr !important;
-          }
-          .testimonials-grid > div {
-            padding: 0 0 48px 0 !important;
-            border-right: none !important;
-            border-bottom: 1px solid rgba(240,240,250,0.12) !important;
-          }
-          .testimonials-grid > div:last-child {
-            border-bottom: none !important;
-            padding-bottom: 0 !important;
-          }
-        }
-        @media (max-width: 500px) {
-          .testimonials-grid {
-            grid-template-columns: 1fr !important;
-          }
-        }
-      `}</style>
     </section>
   );
 }

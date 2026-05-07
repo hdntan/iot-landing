@@ -9,14 +9,14 @@ gsap.registerPlugin(ScrollTrigger);
 
 const plans = [
   {
-    name: "STARTER",
-    price: "990.000đ",
-    period: "/ tháng",
-    description: "Lý tưởng cho chuỗi 1–5 máy",
+    name: "CaaS LITE",
+    price: "490.000đ",
+    period: "/ máy / tháng",
+    description: "Lý tưởng cho quản lý tài sản cơ bản",
     features: [
-      "Giám sát real-time 24/7",
-      "Cảnh báo Zalo / Email",
-      "Báo cáo tháng cơ bản",
+      "Định vị & chống trộm",
+      "Cảnh báo di dời trái phép",
+      "Khóa máy từ xa",
       "Hỗ trợ 8/5",
     ],
     cta: "Bắt đầu",
@@ -25,15 +25,15 @@ const plans = [
     badge: null,
   },
   {
-    name: "GROWTH",
-    price: "2.490.000đ",
-    period: "/ tháng",
-    description: "Chuỗi 6–20 máy, cần analytics sâu",
+    name: "CaaS PRO",
+    price: "890.000đ",
+    period: "/ máy / tháng",
+    description: "Giải pháp Pay-per-cup toàn diện",
     features: [
-      "Tất cả Starter",
-      "AI bảo trì phòng ngừa",
-      "Export PDF tự động",
-      "Dashboard tùy chỉnh",
+      "Tất cả tính năng Lite",
+      "Thống kê ly pha real-time",
+      "Báo cáo nguyên liệu",
+      "Dự báo bảo trì AI",
       "Hỗ trợ 24/7",
     ],
     cta: "Dùng thử 14 ngày",
@@ -45,13 +45,13 @@ const plans = [
     name: "ENTERPRISE",
     price: "Liên hệ",
     period: "",
-    description: "20+ máy, tích hợp hệ thống",
+    description: "Tích hợp sâu cho chuỗi lớn",
     features: [
-      "Tất cả Growth",
+      "Tất cả tính năng Pro",
       "API tích hợp ERP / POS",
-      "SLA 99.9% guarantee",
+      "Triển khai On-premise",
+      "Hardware tùy chỉnh",
       "Dedicated support",
-      "Triển khai on-premise",
     ],
     cta: "Liên hệ Sales",
     href: "#lien-he",
@@ -66,30 +66,42 @@ export default function Pricing() {
 
   useGSAP(() => {
     if (headerRef.current) {
-      gsap.from(headerRef.current, {
-        y: 30,
-        opacity: 0,
-        duration: 0.9,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: headerRef.current,
-          start: "top 80%",
+      gsap.fromTo(headerRef.current, 
+        {
+          y: 30,
+          opacity: 0,
         },
-      });
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.9,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: headerRef.current,
+            start: "top 80%",
+          },
+        }
+      );
     }
 
     if (gridRef.current?.children.length) {
-      gsap.from(Array.from(gridRef.current.children), {
-        y: 40,
-        opacity: 0,
-        stagger: 0.15,
-        duration: 0.9,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: gridRef.current,
-          start: "top 75%",
+      gsap.fromTo(Array.from(gridRef.current.children), 
+        {
+          y: 40,
+          opacity: 0,
         },
-      });
+        {
+          y: 0,
+          opacity: 1,
+          stagger: 0.15,
+          duration: 0.9,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: gridRef.current,
+            start: "top 75%",
+          },
+        }
+      );
     }
   }, []);
 
@@ -97,25 +109,28 @@ export default function Pricing() {
     <section
       id="bang-gia"
       style={{
-        background: "#000000",
+        background: "var(--white)",
         width: "100%",
-        padding: "clamp(80px, 12vh, 160px) clamp(24px, 5vw, 80px)",
-        borderTop: "1px solid rgba(240,240,250,0.12)",
+        padding: "clamp(80px, 12vh, 120px) var(--outer-gutter)",
       }}
     >
-      <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
+      <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
         {/* ── Header ──────────────────────────────────────────────── */}
-        <div ref={headerRef} style={{ marginBottom: "80px" }}>
+        <div ref={headerRef} style={{ marginBottom: "64px", textAlign: "center" }}>
           <p
-            className="sx-micro"
-            style={{ marginBottom: "24px", letterSpacing: "2px" }} // Removed opacity: 0.8
+            className="sb-small"
+            style={{ 
+              marginBottom: "16px", 
+              fontWeight: 600, 
+              color: "var(--starbucks-green)",
+              textTransform: "uppercase",
+              letterSpacing: "1px" 
+            }}
           >
             Bảng giá
           </p>
-          <h2 className="sx-heading" style={{ maxWidth: "540px", marginBottom: "0" }}>
-            Chọn gói
-            <br />
-            phù hợp với bạn
+          <h2 className="sb-display" style={{ maxWidth: "540px", margin: "0 auto", color: "var(--text-main)" }}>
+            Chọn gói phù hợp với bạn
           </h2>
         </div>
 
@@ -125,104 +140,114 @@ export default function Pricing() {
           className="pricing-grid"
           style={{
             display: "grid",
-            gridTemplateColumns: "1fr 1fr 1fr",
-            gap: "0",
+            gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
+            gap: "32px",
+            alignItems: "flex-start",
           }}
         >
-          {plans.map((plan, i) => (
+          {plans.map((plan) => (
             <div
               key={plan.name}
               style={{
-                paddingRight: i < plans.length - 1 ? "48px" : "0",
-                paddingLeft: i > 0 ? "48px" : "0",
-                borderRight:
-                  i < plans.length - 1
-                    ? "1px solid rgba(240,240,250,0.12)"
-                    : "none",
-                borderTop: plan.highlight ? "2px solid #f0f0fa" : "none",
-                paddingTop: plan.highlight ? "32px" : "0",
+                background: plan.highlight ? "var(--neutral-warm)" : "var(--white)",
+                borderRadius: "12px",
+                padding: "48px 32px",
+                boxShadow: plan.highlight 
+                  ? "0 12px 24px rgba(0,0,0,0.08), 0 4px 8px rgba(0,0,0,0.04)" 
+                  : "0 0 0.5px rgba(0,0,0,0.14), 0 1px 1px rgba(0,0,0,0.24)",
+                border: plan.highlight ? "2px solid var(--starbucks-green)" : "1px solid #e7e7e7",
+                position: "relative",
+                display: "flex",
+                flexDirection: "column",
+                height: "100%",
               }}
             >
               {/* Badge */}
               {plan.badge && (
-                <p
-                  className="sx-micro"
+                <div
                   style={{
-                    opacity: 0.8,
-                    letterSpacing: "2px",
-                    marginBottom: "20px",
-                    color: "#f0f0fa",
+                    position: "absolute",
+                    top: "-14px",
+                    left: "50%",
+                    transform: "translateX(-50%)",
+                    background: "var(--starbucks-green)",
+                    color: "var(--white)",
+                    padding: "4px 16px",
+                    borderRadius: "50px",
+                    fontSize: "1.2rem",
+                    fontWeight: 600,
+                    letterSpacing: "0.5px",
+                    textTransform: "uppercase",
                   }}
                 >
                   {plan.badge}
-                </p>
+                </div>
               )}
 
               {/* Plan name */}
               <p
                 style={{
-                  fontSize: "13px",
+                  fontSize: "1.4rem",
                   fontWeight: 700,
-                  letterSpacing: "2px",
+                  letterSpacing: "1px",
                   textTransform: "uppercase",
-                  color: "rgba(240,240,250,0.8)", // Increased from 0.6
-                  marginBottom: "24px",
+                  color: "var(--text-soft)",
+                  marginBottom: "16px",
                 }}
               >
                 {plan.name}
               </p>
 
               {/* Price */}
-              <div style={{ marginBottom: "8px" }}>
+              <div style={{ marginBottom: "8px", display: "flex", alignItems: "baseline", gap: "4px" }}>
                 <span
                   style={{
-                    fontSize: "clamp(28px, 3vw, 40px)",
+                    fontSize: "3.6rem",
                     fontWeight: 700,
-                    letterSpacing: "0.96px",
-                    textTransform: "uppercase",
-                    color: "#f0f0fa",
+                    letterSpacing: "-0.02em",
+                    color: "var(--text-main)",
                     lineHeight: 1,
                   }}
                 >
                   {plan.price}
                 </span>
+                {plan.period && (
+                  <span
+                    style={{ 
+                      fontSize: "1.6rem", 
+                      color: "var(--text-soft)",
+                      fontWeight: 500,
+                    }}
+                  >
+                    {plan.period}
+                  </span>
+                )}
               </div>
-
-              {plan.period && (
-                <p
-                  className="sx-micro"
-                  style={{ opacity: 0.7, marginBottom: "16px" }} // Increased from 0.45
-                >
-                  {plan.period}
-                </p>
-              )}
 
               {/* Description */}
               <p
-                className="sx-body"
+                className="sb-body"
                 style={{
-                  fontSize: "13.5px", // Slightly increased
-                  letterSpacing: "0.4px",
-                  lineHeight: 1.7,
-                  marginBottom: "40px",
-                  opacity: 0.85, // Increased from 0.65
+                  color: "var(--text-secondary)",
+                  marginBottom: "32px",
                 }}
               >
                 {plan.description}
               </p>
 
               {/* Divider */}
-              <div className="sx-divider" style={{ marginBottom: "32px" }} />
+              <div style={{ height: "1px", background: "#e7e7e7", margin: "0 -32px 32px -32px" }} />
 
               {/* Features */}
               <ul
                 style={{
                   listStyle: "none",
-                  margin: "0 0 48px 0",
+                  margin: "0 0 40px 0",
                   padding: 0,
                   display: "flex",
                   flexDirection: "column",
-                  gap: "14px",
+                  gap: "16px",
+                  flexGrow: 1,
                 }}
               >
                 {plan.features.map((f) => (
@@ -234,23 +259,13 @@ export default function Pricing() {
                       alignItems: "flex-start",
                     }}
                   >
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ flexShrink: 0, color: "var(--starbucks-green)" }}>
+                      <path d="M16.6666 5L7.49992 14.1667L3.33325 10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
                     <span
                       style={{
-                        fontSize: "10px",
-                        letterSpacing: "1px",
-                        color: "rgba(240,240,250,0.4)",
-                        marginTop: "2px",
-                        flexShrink: 0,
-                      }}
-                    >
-                      —
-                    </span>
-                    <span
-                      style={{
-                        fontSize: "12px",
-                        letterSpacing: "0.6px",
-                        textTransform: "uppercase",
-                        color: "rgba(240,240,250,0.9)", // Increased from 0.75
+                        fontSize: "1.5rem",
+                        color: "var(--text-main)",
                         lineHeight: 1.5,
                       }}
                     >
@@ -265,7 +280,7 @@ export default function Pricing() {
                 href={plan.href}
                 target={plan.href.startsWith("http") ? "_blank" : undefined}
                 rel={plan.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                className="btn-ghost"
+                className={plan.highlight ? "btn-primary" : "btn-secondary"}
                 style={{ width: "100%", justifyContent: "center" }}
               >
                 {plan.cta}
@@ -276,40 +291,16 @@ export default function Pricing() {
 
         {/* ── Trial note ───────────────────────────────────────────── */}
         <p
-          className="sx-micro"
+          className="sb-small"
           style={{
-            opacity: 0.6, // Increased from 0.35
+            color: "var(--text-soft)",
             marginTop: "48px",
-            letterSpacing: "0.8px",
+            textAlign: "center"
           }}
         >
           * Giá chưa bao gồm phí thiết bị IoT module. Thanh toán hàng tháng, hủy bất kỳ lúc nào.
         </p>
       </div>
-
-      {/* Responsive */}
-      <style>{`
-        @media (max-width: 900px) {
-          .pricing-grid {
-            grid-template-columns: 1fr !important;
-            gap: 48px !important;
-          }
-          .pricing-grid > div {
-            padding: 0 !important;
-            border-right: none !important;
-            border-bottom: 1px solid rgba(240,240,250,0.12) !important;
-            padding-bottom: 48px !important;
-          }
-          .pricing-grid > div:last-child {
-            border-bottom: none !important;
-            padding-bottom: 0 !important;
-          }
-          .pricing-grid > div[style*="border-top: 2px solid"] {
-            border-top: 2px solid #f0f0fa !important;
-            padding-top: 32px !important;
-          }
-        }
-      `}</style>
     </section>
   );
 }

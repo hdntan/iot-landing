@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
-import { Barlow } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 
-const barlow = Barlow({
-  variable: "--font-barlow",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
-  weight: ["400", "700"],
   display: "swap",
 });
 
@@ -26,8 +25,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="vi" className={`${barlow.variable} h-full`}>
-      <body className="min-h-full flex flex-col bg-black text-[#f0f0fa]">
+    <html lang="vi" className={`${inter.variable} h-full`}>
+      <body className="min-h-full flex flex-col">
         {children}
       </body>
     </html>
