@@ -1,37 +1,106 @@
 "use client";
 
-import { useState, useRef } from "react";
+import React, { useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import { HelpCircle, MessageCircle, ChevronDown } from "lucide-react";
+import * as AccordionPrimitive from "@radix-ui/react-accordion";
 
 gsap.registerPlugin(ScrollTrigger);
 
+// Self-contained cn utility
+const cn = (...classes: (string | undefined | null | false)[]) => classes.filter(Boolean).join(" ");
+
+const CustomAccordion = AccordionPrimitive.Root;
+
+const CustomAccordionItem = React.forwardRef<
+  React.ElementRef<typeof AccordionPrimitive.Item>,
+  React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Item>
+>(({ className, ...props }, ref) => (
+  <AccordionPrimitive.Item ref={ref} className={cn("mb-6", className)} {...props} />
+));
+CustomAccordionItem.displayName = "CustomAccordionItem";
+
+const CustomAccordionTrigger = React.forwardRef<
+  React.ElementRef<typeof AccordionPrimitive.Trigger>,
+  React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Trigger>
+>(({ className, children, ...props }, ref) => (
+  <AccordionPrimitive.Header className="flex">
+    <AccordionPrimitive.Trigger
+      ref={ref}
+      className={cn(
+        "group flex flex-1 items-center justify-between gap-6 rounded-2xl p-5 text-left border",
+        "bg-white border-[#d6dbde] transition-all hover:bg-[#fafaf8] hover:shadow-sm",
+        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#006241]",
+        "data-[state=open]:border-[#cba258] data-[state=open]:shadow-md data-[state=open]:bg-white",
+        className,
+      )}
+      {...props}
+    >
+      <div className="flex items-center gap-5">
+        <HelpCircle className="h-6 w-6 text-[#006241] flex-shrink-0" />
+        <span className="text-xl md:text-2xl font-semibold text-[#1e3932] tracking-tight">
+          {children}
+        </span>
+      </div>
+      <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-[#f2f0eb] transition-transform duration-300 group-hover:bg-[#e2e0da] group-hover:scale-105 group-data-[state=open]:rotate-180 group-data-[state=open]:bg-[#cba258]">
+        <ChevronDown className="h-5 w-5 text-[#1e3932] group-data-[state=open]:text-white" />
+      </div>
+    </AccordionPrimitive.Trigger>
+  </AccordionPrimitive.Header>
+));
+CustomAccordionTrigger.displayName = "CustomAccordionTrigger";
+
+const CustomAccordionContent = React.forwardRef<
+  React.ElementRef<typeof AccordionPrimitive.Content>,
+  React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Content>
+>(({ className, children, ...props }, ref) => (
+  <AccordionPrimitive.Content
+    ref={ref}
+    className={cn(
+      "overflow-hidden",
+      "data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down",
+      className,
+    )}
+    {...props}
+  >
+    <div className="mt-4 md:ml-[3.25rem] ml-0 pb-2">
+      <div className="flex items-start gap-5 rounded-2xl bg-[#fafaf8] border border-[#e2e0da] p-6 shadow-sm transition-all">
+        <span className="flex-1 text-lg leading-[1.6] text-[rgba(0,0,0,0.7)]">{children}</span>
+        <div className="hidden sm:flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-white border border-[#e2e0da] transition-transform hover:scale-105">
+          <MessageCircle className="h-5 w-5 text-[#006241]" />
+        </div>
+      </div>
+    </div>
+  </AccordionPrimitive.Content>
+));
+CustomAccordionContent.displayName = "CustomAccordionContent";
+
 const faqs = [
   {
-    q: "Mô hình Pay-per-cup hoạt động như thế nào?",
-    a: "Chúng tôi lắp đặt module IoT đọc dữ liệu chiết xuất (áp suất, thời gian, lưu lượng nước) vào máy pha. Bạn sẽ thu phí hoặc trả phí dựa trên số ly cà phê thực tế được pha ra, đảm bảo minh bạch tuyệt đối.",
+    question: "Mô hình Pay-per-cup hoạt động như thế nào?",
+    answer: "Chúng tôi lắp đặt module IoT đọc dữ liệu chiết xuất (áp suất, thời gian, lưu lượng nước) vào máy pha. Bạn sẽ thu phí hoặc trả phí dựa trên số ly cà phê thực tế được pha ra, đảm bảo minh bạch tuyệt đối.",
   },
   {
-    q: "Có hỗ trợ các dòng máy pha cà phê cũ không?",
-    a: "Có. Module của chúng tôi tương thích với 90% các dòng máy pha espresso bán tự động và tự động trên thị trường, kể cả những model cũ không có bo mạch điện tử thông minh.",
+    question: "Có hỗ trợ các dòng máy pha cà phê cũ không?",
+    answer: "Có. Module của chúng tôi tương thích với 90% các dòng máy pha espresso bán tự động và tự động trên thị trường, kể cả những model cũ không có bo mạch điện tử thông minh.",
   },
   {
-    q: "Làm sao để biết nhân viên không gian lận?",
-    a: "Hệ thống liên tục đối chiếu số lượng ly pha được (dữ liệu IoT) với định lượng hạt cà phê tiêu hao. Bất kỳ sự sai lệch nào vượt mức cho phép sẽ kích hoạt cảnh báo gửi ngay đến quản lý.",
+    question: "Làm sao để biết nhân viên không gian lận?",
+    answer: "Hệ thống liên tục đối chiếu số lượng ly pha được (dữ liệu IoT) với định lượng hạt cà phê tiêu hao. Bất kỳ sự sai lệch nào vượt mức cho phép sẽ kích hoạt cảnh báo gửi ngay đến quản lý.",
   },
   {
-    q: "Nếu mất kết nối Wifi thì dữ liệu có bị mất?",
-    a: "Không. Module được trang bị bộ nhớ đệm lưu trữ dữ liệu offline lên đến 72 giờ và sẽ tự động đồng bộ lên Cloud ngay khi có kết nối mạng trở lại.",
+    question: "Nếu mất kết nối Wifi thì dữ liệu có bị mất?",
+    answer: "Không. Module được trang bị bộ nhớ đệm lưu trữ dữ liệu offline lên đến 72 giờ và sẽ tự động đồng bộ lên Cloud ngay khi có kết nối mạng trở lại.",
   },
   {
-    q: "Tôi có thể khóa máy pha cà phê từ xa không?",
-    a: "Có. Tính năng bảo vệ tài sản cho phép bạn vô hiệu hóa (khóa) máy ngay trên điện thoại nếu phát hiện thiết bị bị di dời trái phép hoặc đối tác trễ hạn thanh toán.",
+    question: "Tôi có thể khóa máy pha cà phê từ xa không?",
+    answer: "Có. Tính năng bảo vệ tài sản cho phép bạn vô hiệu hóa (khóa) máy ngay trên điện thoại nếu phát hiện thiết bị bị di dời trái phép hoặc đối tác trễ hạn thanh toán.",
   },
 ];
 
 export default function Faq() {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
   const headerRef = useRef<HTMLDivElement>(null);
   const listRef = useRef<HTMLDivElement>(null);
 
@@ -55,16 +124,15 @@ export default function Faq() {
       );
     }
 
-    if (listRef.current?.children.length) {
-      gsap.fromTo(Array.from(listRef.current.children), 
+    if (listRef.current) {
+      gsap.fromTo(listRef.current, 
         {
-          y: 20,
+          y: 30,
           opacity: 0,
         },
         {
           y: 0,
           opacity: 1,
-          stagger: 0.1,
           duration: 0.8,
           ease: "power3.out",
           scrollTrigger: {
@@ -79,175 +147,64 @@ export default function Faq() {
   return (
     <section
       id="faq"
-      style={{
-        background: "var(--neutral-warm)",
-        width: "100%",
-        padding: "clamp(80px, 12vh, 160px) var(--outer-gutter)",
-      }}
+      className="py-24 md:py-32 w-full"
+      style={{ background: "var(--neutral-warm)" }}
     >
-      <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+      <div className="container mx-auto px-6 md:px-8 lg:px-12 max-w-6xl">
         {/* ── Header ──────────────────────────────────────────────── */}
         <div
           ref={headerRef}
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: "80px",
-            marginBottom: "80px",
-            alignItems: "end",
-          }}
-          className="faq-header"
+          className="mb-16 md:mb-24 flex flex-col md:flex-row md:items-end justify-between gap-8 md:gap-16"
         >
-          <div>
+          <div className="flex-1 max-w-2xl">
             <p
               className="sb-small"
               style={{ 
                 marginBottom: "24px", 
-                fontWeight: 600,
+                fontWeight: 700,
                 color: "var(--starbucks-green)",
                 textTransform: "uppercase",
-                letterSpacing: "1px" 
+                letterSpacing: "0.2em",
+                fontSize: "16px"
               }}
             >
               FAQ
             </p>
-            <h2 className="sb-display" style={{ marginBottom: "0", color: "var(--text-main)" }}>
-              Câu hỏi
-              <br />
-              thường gặp
+            <h2 className="text-5xl font-bold md:text-6xl lg:text-7xl text-[#1e3932] tracking-tighter mb-0">
+              Câu hỏi<br />thường gặp.
             </h2>
           </div>
-          <p
-            className="sb-body"
-            style={{
-              color: "var(--text-secondary)",
-              lineHeight: 1.6,
-            }}
-          >
-            Có câu hỏi nào khác? Liên hệ trực tiếp qua{" "}
-            <a
-              href="https://dimori.net/en"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                color: "var(--starbucks-green)",
-                textDecoration: "underline",
-                textUnderlineOffset: "4px",
-                fontWeight: 500
-              }}
-            >
-              dimori.net
-            </a>
-          </p>
+          <div className="md:max-w-md pb-2">
+            <p className="text-xl text-[rgba(0,0,0,0.65)] leading-[1.6]">
+              Có câu hỏi nào khác? Liên hệ trực tiếp với chúng tôi qua{" "}
+              <a
+                href="https://dimori.net/en"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-semibold text-[#006241] hover:text-[#1e3932] underline underline-offset-4 transition-colors"
+              >
+                dimori.net
+              </a>
+            </p>
+          </div>
         </div>
 
         {/* ── FAQ list ─────────────────────────────────────────────── */}
-        <div ref={listRef}>
-          {faqs.map((faq, i) => (
-            <div key={faq.q}>
-              <div style={{ height: "1px", background: "#d1cec5" }} />
-              <button
-                onClick={() => setOpenIndex(openIndex === i ? null : i)}
-                style={{
-                  display: "grid",
-                  gridTemplateColumns: "1fr auto",
-                  gap: "32px",
-                  alignItems: "center",
-                  width: "100%",
-                  background: "none",
-                  border: "none",
-                  padding: "32px 0",
-                  cursor: "pointer",
-                  textAlign: "left",
-                }}
-              >
-                <h3
-                  style={{
-                    fontSize: "clamp(18px, 2vw, 22px)",
-                    fontWeight: 600,
-                    letterSpacing: "-0.01em",
-                    color: openIndex === i ? "var(--starbucks-green)" : "var(--text-main)",
-                    margin: 0,
-                    lineHeight: 1.3,
-                    transition: "color 0.2s ease",
-                  }}
-                >
-                  {faq.q}
-                </h3>
-                {/* Toggle icon (+ / -) */}
-                <div
-                  style={{
-                    width: "24px",
-                    height: "24px",
-                    flexShrink: 0,
-                    position: "relative",
-                    color: openIndex === i ? "var(--starbucks-green)" : "var(--text-main)",
-                    transition: "color 0.2s ease",
-                  }}
-                >
-                  <div
-                    style={{
-                      position: "absolute",
-                      top: "50%",
-                      left: 0,
-                      right: 0,
-                      height: "2px",
-                      background: "currentColor",
-                      transform: "translateY(-50%)",
-                    }}
-                  />
-                  <div
-                    style={{
-                      position: "absolute",
-                      left: "50%",
-                      top: 0,
-                      bottom: 0,
-                      width: "2px",
-                      background: "currentColor",
-                      transform: `translateX(-50%) scaleY(${openIndex === i ? 0 : 1})`,
-                      transition: "transform 0.3s ease",
-                    }}
-                  />
-                </div>
-              </button>
-
-              {/* Answer panel */}
-              <div
-                style={{
-                  maxHeight: openIndex === i ? "300px" : "0",
-                  overflow: "hidden",
-                  transition: "max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
-                }}
-              >
-                <p
-                  className="sb-body"
-                  style={{
-                    color: "var(--text-secondary)",
-                    lineHeight: 1.6,
-                    paddingBottom: "32px",
-                    maxWidth: "680px",
-                    margin: 0,
-                  }}
-                >
-                  {faq.a}
-                </p>
-              </div>
-            </div>
-          ))}
-          {/* Final divider */}
-          <div style={{ height: "1px", background: "#d1cec5" }} />
+        <div ref={listRef} className="mx-auto max-w-4xl">
+          <CustomAccordion
+            type="single"
+            collapsible
+            className="w-full"
+          >
+            {faqs.map((faq, index) => (
+              <CustomAccordionItem key={index} value={`item-${index}`}>
+                <CustomAccordionTrigger>{faq.question}</CustomAccordionTrigger>
+                <CustomAccordionContent>{faq.answer}</CustomAccordionContent>
+              </CustomAccordionItem>
+            ))}
+          </CustomAccordion>
         </div>
       </div>
-
-      {/* Responsive */}
-      <style>{`
-        @media (max-width: 768px) {
-          .faq-header {
-            grid-template-columns: 1fr !important;
-            gap: 32px !important;
-          }
-        }
-      `}</style>
     </section>
   );
 }
