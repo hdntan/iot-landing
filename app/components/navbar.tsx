@@ -16,7 +16,7 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+      setScrolled(window.scrollY > 20);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -34,13 +34,15 @@ export default function Navbar() {
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          padding: scrolled ? "16px 48px" : "24px 48px",
-          background: scrolled ? "rgba(0, 0, 0, 0.75)" : "transparent",
-          backdropFilter: scrolled ? "blur(12px)" : "none",
-          WebkitBackdropFilter: scrolled ? "blur(12px)" : "none",
-          transition: "padding 0.3s ease, background 0.3s ease, backdrop-filter 0.3s ease",
-          borderBottom: scrolled ? "1px solid rgba(240, 240, 250, 0.08)" : "1px solid transparent",
+          padding: "0 var(--outer-gutter)",
+          height: scrolled ? "72px" : "83px", // Progressive heights
+          background: scrolled ? "var(--white)" : "var(--neutral-warm)",
+          boxShadow: scrolled
+            ? "0 1px 3px rgba(0,0,0,0.1), 0 2px 2px rgba(0,0,0,0.06), 0 0 2px rgba(0,0,0,0.07)"
+            : "none",
+          transition: "height 0.3s ease, background 0.3s ease, box-shadow 0.3s ease",
         }}
+        className="px-6 md:px-10 lg:px-16"
       >
         {/* Logo */}
         <Link
@@ -50,11 +52,10 @@ export default function Navbar() {
             window.scrollTo({ top: 0, behavior: "smooth" });
           }}
           style={{
-            color: "#f0f0fa",
-            fontSize: "13px",
+            color: "var(--starbucks-green)",
+            fontSize: "2.0rem",
             fontWeight: 700,
-            letterSpacing: "2px",
-            textTransform: "uppercase",
+            letterSpacing: "-0.01em",
             textDecoration: "none",
             display: "flex",
             alignItems: "center",
@@ -62,53 +63,50 @@ export default function Navbar() {
           }}
         >
           <svg
-            width="20"
-            height="20"
-            viewBox="0 0 20 20"
+            width="28"
+            height="28"
+            viewBox="0 0 24 24"
             fill="none"
             aria-hidden
           >
-            <circle
-              cx="10"
-              cy="10"
-              r="9"
-              stroke="#f0f0fa"
-              strokeWidth="1.5"
-              opacity="0.8"
-            />
-            <circle cx="10" cy="10" r="3" fill="#f0f0fa" />
+            <circle cx="12" cy="12" r="10" fill="var(--starbucks-green)" />
             <path
-              d="M10 2v4M10 14v4M2 10h4M14 10h4"
-              stroke="#f0f0fa"
-              strokeWidth="1.2"
-              opacity="0.5"
+              d="M12 6v6l4 2"
+              stroke="var(--white)"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             />
           </svg>
           Coffee IoT
         </Link>
 
         {/* Desktop nav links */}
-        <nav 
-          className="hidden md:flex" 
-          style={{ 
-            gap: "36px",
+        <nav
+          className="hidden md:flex"
+          style={{
+            gap: "3.2rem",
+            marginLeft: "auto",
+            marginRight: "3.2rem",
           }}
         >
           {navItems.map((item) => (
             <a
               key={item.href}
               href={item.href}
-              className="sx-nav"
               style={{
                 textDecoration: "none",
-                opacity: 0.9, // Increased from 0.75
-                transition: "opacity 0.2s ease",
+                fontSize: "1.4rem",
+                fontWeight: 600,
+                color: "var(--text-main)",
+                letterSpacing: "-0.01em",
+                transition: "color 0.2s ease",
               }}
               onMouseEnter={(e) =>
-                ((e.currentTarget as HTMLAnchorElement).style.opacity = "1")
+                ((e.currentTarget as HTMLAnchorElement).style.color = "var(--green-accent)")
               }
               onMouseLeave={(e) =>
-                ((e.currentTarget as HTMLAnchorElement).style.opacity = "0.9")
+                ((e.currentTarget as HTMLAnchorElement).style.color = "var(--text-main)")
               }
             >
               {item.label}
@@ -117,15 +115,17 @@ export default function Navbar() {
         </nav>
 
         {/* Desktop CTA */}
-        <a 
-          href="https://dimori.net/en" 
-          target="_blank" 
-          rel="noopener noreferrer" 
-          className="btn-ghost header-cta-desktop" 
-          style={{ fontSize: "12px", padding: "12px 28px" }}
-        >
-          Đặt lịch Demo
-        </a>
+        <div className="hidden md:flex items-center gap-4">
+          <a
+            href="https://dimori.net/en"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-primary"
+            style={{ fontSize: "1.4rem", padding: "0.7rem 1.6rem" }}
+          >
+            Đặt lịch Demo
+          </a>
+        </div>
 
         {/* Mobile hamburger */}
         <button
@@ -138,7 +138,7 @@ export default function Navbar() {
             cursor: "pointer",
             flexDirection: "column",
             gap: "5px",
-            padding: "4px",
+            padding: "8px",
           }}
         >
           {[0, 1, 2].map((i) => (
@@ -146,28 +146,29 @@ export default function Navbar() {
               key={i}
               style={{
                 display: "block",
-                width: "22px",
-                height: "1.5px",
-                background: "#f0f0fa",
+                width: "24px",
+                height: "2px",
+                background: "var(--text-main)",
+                borderRadius: "2px",
               }}
             />
           ))}
         </button>
       </header>
 
-      {/* Mobile full-screen menu — SpaceX style */}
+      {/* Mobile full-screen menu */}
       {menuOpen && (
         <div
           style={{
             position: "fixed",
             inset: 0,
-            background: "#000000",
+            background: "var(--neutral-warm)",
             zIndex: 200,
             display: "flex",
             flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
-            gap: "48px",
+            alignItems: "flex-start",
+            padding: "8.8rem 3.2rem 3.2rem",
+            gap: "3.2rem",
           }}
         >
           {/* Close */}
@@ -176,16 +177,15 @@ export default function Navbar() {
             aria-label="Đóng menu"
             style={{
               position: "absolute",
-              top: "24px",
-              right: "24px",
+              top: "2.4rem",
+              right: "2.4rem",
               background: "none",
               border: "none",
-              color: "#f0f0fa",
-              fontSize: "20px",
+              color: "var(--text-main)",
+              fontSize: "2.4rem",
               cursor: "pointer",
-              letterSpacing: "1px",
-              textTransform: "uppercase",
-              fontWeight: 700,
+              fontWeight: 400,
+              padding: "8px",
             }}
           >
             ✕
@@ -197,21 +197,12 @@ export default function Navbar() {
               href={item.href}
               onClick={() => setMenuOpen(false)}
               style={{
-                color: "#f0f0fa",
-                fontSize: "clamp(28px, 8vw, 42px)",
-                fontWeight: 700,
-                letterSpacing: "2px",
-                textTransform: "uppercase",
+                color: "var(--text-main)",
+                fontSize: "2.4rem",
+                fontWeight: 600,
+                letterSpacing: "-0.01em",
                 textDecoration: "none",
-                opacity: 1, // Increased from 0.85
-                transition: "opacity 0.2s ease",
               }}
-              onMouseEnter={(e) =>
-                ((e.currentTarget as HTMLAnchorElement).style.opacity = "1")
-              }
-              onMouseLeave={(e) =>
-                ((e.currentTarget as HTMLAnchorElement).style.opacity = "1")
-              }
             >
               {item.label}
             </a>
@@ -221,23 +212,14 @@ export default function Navbar() {
             href="https://dimori.net/en"
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-ghost"
+            className="btn-primary"
             onClick={() => setMenuOpen(false)}
+            style={{ marginTop: "1.6rem", width: "100%", justifyContent: "center" }}
           >
             Đặt lịch Demo
           </a>
         </div>
       )}
-
-      {/* SpaceX scrollbar & global fixes */}
-      <style>{`
-        header { transition: all 0.4s var(--cubic-default); }
-        
-        @media (max-width: 768px) {
-          header { padding: 16px 24px !important; }
-          .header-cta-desktop { display: none !important; }
-        }
-      `}</style>
     </>
   );
 }

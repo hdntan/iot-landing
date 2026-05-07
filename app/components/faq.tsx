@@ -9,24 +9,24 @@ gsap.registerPlugin(ScrollTrigger);
 
 const faqs = [
   {
-    q: "Cần bao lâu để lắp đặt?",
-    a: "Module IoT lắp trong 15–30 phút qua cổng USB hoặc gắn ngoài. Không cần kỹ thuật viên chuyên biệt — nhân viên kỹ thuật tại chỗ có thể tự thực hiện theo hướng dẫn.",
+    q: "Mô hình Pay-per-cup hoạt động như thế nào?",
+    a: "Chúng tôi lắp đặt module IoT đọc dữ liệu chiết xuất (áp suất, thời gian, lưu lượng nước) vào máy pha. Bạn sẽ thu phí hoặc trả phí dựa trên số ly cà phê thực tế được pha ra, đảm bảo minh bạch tuyệt đối.",
   },
   {
-    q: "Hỗ trợ thương hiệu máy nào?",
-    a: "Nuova Simonelli, La Marzocco, Jura, Franke, DeLonghi, Schaerer, WMF và 20+ thương hiệu phổ biến tại thị trường Việt Nam. Liên hệ để kiểm tra thiết bị cụ thể của bạn.",
+    q: "Có hỗ trợ các dòng máy pha cà phê cũ không?",
+    a: "Có. Module của chúng tôi tương thích với 90% các dòng máy pha espresso bán tự động và tự động trên thị trường, kể cả những model cũ không có bo mạch điện tử thông minh.",
   },
   {
-    q: "Dữ liệu được lưu trữ ở đâu?",
-    a: "Server đặt tại Việt Nam, tuân thủ Nghị định 13/2023/NĐ-CP về bảo vệ dữ liệu cá nhân. Dữ liệu được mã hóa end-to-end, chỉ bạn mới có quyền truy cập.",
+    q: "Làm sao để biết nhân viên không gian lận?",
+    a: "Hệ thống liên tục đối chiếu số lượng ly pha được (dữ liệu IoT) với định lượng hạt cà phê tiêu hao. Bất kỳ sự sai lệch nào vượt mức cho phép sẽ kích hoạt cảnh báo gửi ngay đến quản lý.",
   },
   {
-    q: "Nếu mất kết nối internet thì sao?",
-    a: "Module lưu dữ liệu offline tối đa 72 giờ và tự đồng bộ khi có kết nối trở lại. Cảnh báo khẩn cấp vẫn gửi qua SIM 4G dự phòng (gói Growth trở lên).",
+    q: "Nếu mất kết nối Wifi thì dữ liệu có bị mất?",
+    a: "Không. Module được trang bị bộ nhớ đệm lưu trữ dữ liệu offline lên đến 72 giờ và sẽ tự động đồng bộ lên Cloud ngay khi có kết nối mạng trở lại.",
   },
   {
-    q: "Có thể dùng thử trước khi mua không?",
-    a: "Có. Gói Growth có 14 ngày dùng thử miễn phí, không cần thẻ tín dụng, không tự động gia hạn. Đặt lịch demo để được tư vấn và cài đặt trực tiếp.",
+    q: "Tôi có thể khóa máy pha cà phê từ xa không?",
+    a: "Có. Tính năng bảo vệ tài sản cho phép bạn vô hiệu hóa (khóa) máy ngay trên điện thoại nếu phát hiện thiết bị bị di dời trái phép hoặc đối tác trễ hạn thanh toán.",
   },
 ];
 
@@ -37,30 +37,42 @@ export default function Faq() {
 
   useGSAP(() => {
     if (headerRef.current) {
-      gsap.from(headerRef.current, {
-        y: 30,
-        opacity: 0,
-        duration: 0.9,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: headerRef.current,
-          start: "top 80%",
+      gsap.fromTo(headerRef.current, 
+        {
+          y: 30,
+          opacity: 0,
         },
-      });
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.9,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: headerRef.current,
+            start: "top 80%",
+          },
+        }
+      );
     }
 
     if (listRef.current?.children.length) {
-      gsap.from(Array.from(listRef.current.children), {
-        y: 20,
-        opacity: 0,
-        stagger: 0.1,
-        duration: 0.8,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: listRef.current,
-          start: "top 78%",
+      gsap.fromTo(Array.from(listRef.current.children), 
+        {
+          y: 20,
+          opacity: 0,
         },
-      });
+        {
+          y: 0,
+          opacity: 1,
+          stagger: 0.1,
+          duration: 0.8,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: listRef.current,
+            start: "top 78%",
+          },
+        }
+      );
     }
   }, []);
 
@@ -68,13 +80,12 @@ export default function Faq() {
     <section
       id="faq"
       style={{
-        background: "#000000",
+        background: "var(--neutral-warm)",
         width: "100%",
-        padding: "clamp(80px, 12vh, 160px) clamp(24px, 5vw, 80px)",
-        borderTop: "1px solid rgba(240,240,250,0.12)",
+        padding: "clamp(80px, 12vh, 160px) var(--outer-gutter)",
       }}
     >
-      <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
+      <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
         {/* ── Header ──────────────────────────────────────────────── */}
         <div
           ref={headerRef}
@@ -89,24 +100,28 @@ export default function Faq() {
         >
           <div>
             <p
-              className="sx-micro"
-              style={{ marginBottom: "24px", letterSpacing: "2px" }} // Removed opacity: 0.8
+              className="sb-small"
+              style={{ 
+                marginBottom: "24px", 
+                fontWeight: 600,
+                color: "var(--starbucks-green)",
+                textTransform: "uppercase",
+                letterSpacing: "1px" 
+              }}
             >
               FAQ
             </p>
-            <h2 className="sx-heading" style={{ marginBottom: "0" }}>
+            <h2 className="sb-display" style={{ marginBottom: "0", color: "var(--text-main)" }}>
               Câu hỏi
               <br />
               thường gặp
             </h2>
           </div>
           <p
-            className="sx-body"
+            className="sb-body"
             style={{
-              fontSize: "15px", // Increased from 14px
-              letterSpacing: "0.4px",
-              lineHeight: 1.85,
-              opacity: 0.8, // Increased from 0.65
+              color: "var(--text-secondary)",
+              lineHeight: 1.6,
             }}
           >
             Có câu hỏi nào khác? Liên hệ trực tiếp qua{" "}
@@ -115,9 +130,10 @@ export default function Faq() {
               target="_blank"
               rel="noopener noreferrer"
               style={{
-                color: "#f0f0fa",
+                color: "var(--starbucks-green)",
                 textDecoration: "underline",
                 textUnderlineOffset: "4px",
+                fontWeight: 500
               }}
             >
               dimori.net
@@ -129,7 +145,7 @@ export default function Faq() {
         <div ref={listRef}>
           {faqs.map((faq, i) => (
             <div key={faq.q}>
-              <div className="sx-divider" />
+              <div style={{ height: "1px", background: "#d1cec5" }} />
               <button
                 onClick={() => setOpenIndex(openIndex === i ? null : i)}
                 style={{
@@ -147,26 +163,26 @@ export default function Faq() {
               >
                 <h3
                   style={{
-                    fontSize: "clamp(14px, 1.5vw, 18px)",
-                    fontWeight: 700,
-                    letterSpacing: "0.96px",
-                    textTransform: "uppercase",
-                    color: "#f0f0fa",
+                    fontSize: "clamp(18px, 2vw, 22px)",
+                    fontWeight: 600,
+                    letterSpacing: "-0.01em",
+                    color: openIndex === i ? "var(--starbucks-green)" : "var(--text-main)",
                     margin: 0,
                     lineHeight: 1.3,
+                    transition: "color 0.2s ease",
                   }}
                 >
                   {faq.q}
                 </h3>
-                {/* Toggle icon */}
+                {/* Toggle icon (+ / -) */}
                 <div
                   style={{
                     width: "24px",
                     height: "24px",
                     flexShrink: 0,
                     position: "relative",
-                    opacity: 0.5,
-                    transition: "opacity 0.2s ease",
+                    color: openIndex === i ? "var(--starbucks-green)" : "var(--text-main)",
+                    transition: "color 0.2s ease",
                   }}
                 >
                   <div
@@ -175,8 +191,8 @@ export default function Faq() {
                       top: "50%",
                       left: 0,
                       right: 0,
-                      height: "1px",
-                      background: "#f0f0fa",
+                      height: "2px",
+                      background: "currentColor",
                       transform: "translateY(-50%)",
                     }}
                   />
@@ -186,8 +202,8 @@ export default function Faq() {
                       left: "50%",
                       top: 0,
                       bottom: 0,
-                      width: "1px",
-                      background: "#f0f0fa",
+                      width: "2px",
+                      background: "currentColor",
                       transform: `translateX(-50%) scaleY(${openIndex === i ? 0 : 1})`,
                       transition: "transform 0.3s ease",
                     }}
@@ -204,13 +220,13 @@ export default function Faq() {
                 }}
               >
                 <p
-                  className="sx-body"
+                  className="sb-body"
                   style={{
-                    fontSize: "15px", // Increased from 14px
-                    letterSpacing: "0.4px",
-                    lineHeight: 1.85,
+                    color: "var(--text-secondary)",
+                    lineHeight: 1.6,
                     paddingBottom: "32px",
                     maxWidth: "680px",
+                    margin: 0,
                   }}
                 >
                   {faq.a}
@@ -219,7 +235,7 @@ export default function Faq() {
             </div>
           ))}
           {/* Final divider */}
-          <div className="sx-divider" />
+          <div style={{ height: "1px", background: "#d1cec5" }} />
         </div>
       </div>
 

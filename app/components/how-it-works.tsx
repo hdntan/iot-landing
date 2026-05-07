@@ -12,10 +12,10 @@ const tabs = [
   {
     value: "ket-noi",
     index: "01",
-    label: "Kết nối",
-    title: "Lắp IoT module vào máy pha cà phê.",
+    label: "Triển khai",
+    title: "Lắp đặt phần cứng chuẩn công nghiệp.",
     description:
-      "Module kết nối qua cổng USB hoặc gắn ngoài. Hỗ trợ mọi thương hiệu máy phổ biến. Kết nối Wifi / 4G tự động.",
+      "Module IoT gắn ngoài nhỏ gọn, tương thích với 90% máy pha cà phê chuyên nghiệp hiện nay. Tự động kết nối Wifi/4G không cần cấu hình phức tạp.",
     cta: "Xem hướng dẫn",
     image: "/images/step1.png",
     imageLabel: "Hướng dẫn lắp đặt",
@@ -23,10 +23,10 @@ const tabs = [
   {
     value: "giam-sat",
     index: "02",
-    label: "Giám sát",
-    title: "Xem trạng thái từng máy từ xa.",
+    label: "Quản lý",
+    title: "Đồng bộ dữ liệu an toàn.",
     description:
-      "Dashboard hiển thị nhiệt độ, áp suất, số lượt pha, trạng thái online / offline của từng máy theo thời gian thực.",
+      "Dashboard trung tâm hiển thị toàn cảnh tình trạng thiết bị ở tất cả các điểm bán. Phân quyền truy cập rõ ràng.",
     cta: "Xem demo",
     image: "/images/step2.png",
     imageLabel: "Dashboard Preview",
@@ -34,10 +34,10 @@ const tabs = [
   {
     value: "toi-uu",
     index: "03",
-    label: "Tối ưu",
-    title: "Nhận cảnh báo & tối ưu vận hành tự động.",
+    label: "Kinh doanh",
+    title: "Tối ưu hóa lợi nhuận cho thuê.",
     description:
-      "AI phân tích dữ liệu, dự đoán hỏng hóc, tự động lên lịch bảo trì và gửi báo cáo hàng tuần.",
+      "Thu tiền chính xác theo số ly pha (Pay-per-cup). Cung cấp giải pháp cho thuê máy không rủi ro cho cả hai bên.",
     cta: "Tìm hiểu thêm",
     image: "/images/step3.png",
     imageLabel: "AI Analytics",
@@ -51,16 +51,22 @@ export default function HowItWorks() {
 
   useGSAP(() => {
     if (headerRef.current) {
-      gsap.from(headerRef.current, {
-        y: 30,
-        opacity: 0,
-        duration: 0.9,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: headerRef.current,
-          start: "top 80%",
+      gsap.fromTo(headerRef.current, 
+        {
+          y: 30,
+          opacity: 0,
         },
-      });
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.9,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: headerRef.current,
+            start: "top 80%",
+          },
+        }
+      );
     }
   }, []);
 
@@ -71,38 +77,41 @@ export default function HowItWorks() {
       id="cach-hoat-dong"
       ref={sectionRef}
       style={{
-        background: "#000000",
+        background: "var(--house-green)",
         width: "100%",
-        padding: "clamp(80px, 12vh, 160px) clamp(24px, 5vw, 80px)",
-        borderTop: "1px solid rgba(240,240,250,0.12)",
+        padding: "clamp(80px, 12vh, 120px) var(--outer-gutter)",
       }}
     >
-      <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
+      <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
         {/* ── Header ────────────────────────────────────────────── */}
-        <div ref={headerRef} style={{ marginBottom: "80px" }}>
+        <div ref={headerRef} style={{ marginBottom: "64px" }}>
           <p
-            className="sx-micro"
-            style={{ marginBottom: "24px", letterSpacing: "2px" }} // Removed opacity: 0.8
+            className="sb-small"
+            style={{ 
+              marginBottom: "16px", 
+              fontWeight: 600, 
+              color: "var(--accent-green)",
+              textTransform: "uppercase",
+              letterSpacing: "1px",
+            }}
           >
             Quy trình
           </p>
           <h2
-            className="sx-heading"
-            style={{ maxWidth: "540px", marginBottom: "0" }}
+            className="sb-display"
+            style={{ maxWidth: "540px", marginBottom: "0", color: "var(--white)" }}
           >
-            Bắt đầu chỉ
-            <br />
-            trong 5 phút
+            Sẵn sàng triển khai trong 5 phút
           </h2>
         </div>
 
-        {/* ── Tab triggers — horizontal step selector ─────────── */}
+        {/* ── Tab triggers ──────────────────────────────────────── */}
         <div
           style={{
             display: "flex",
             gap: "0",
             marginBottom: "60px",
-            borderBottom: "1px solid rgba(240,240,250,0.12)",
+            borderBottom: "1px solid #e7e7e7",
           }}
         >
           {tabs.map((tab) => {
@@ -115,7 +124,7 @@ export default function HowItWorks() {
                   background: "none",
                   border: "none",
                   borderBottom: isActive
-                    ? "2px solid #f0f0fa"
+                    ? "2px solid var(--accent-green)"
                     : "2px solid transparent",
                   marginBottom: "-1px",
                   padding: "16px 32px 16px 0",
@@ -123,24 +132,24 @@ export default function HowItWorks() {
                   display: "flex",
                   alignItems: "baseline",
                   gap: "12px",
-                  transition: "opacity 0.2s ease",
+                  transition: "all 0.2s ease",
                 }}
               >
                 <span
-                  className="sx-micro"
-                  style={{ opacity: isActive ? 1 : 0.5 }} // Increased opacity
+                  style={{
+                    fontSize: "1.4rem",
+                    fontWeight: 600,
+                    color: isActive ? "var(--accent-green)" : "rgba(255,255,255,0.4)",
+                  }}
                 >
                   {tab.index}
                 </span>
                 <span
                   style={{
-                    fontSize: "13px",
-                    fontWeight: 700,
-                    letterSpacing: "1.17px",
-                    textTransform: "uppercase",
-                    color: "#f0f0fa",
-                    opacity: isActive ? 1 : 0.7, // Increased from 0.6
-                    transition: "opacity 0.2s ease",
+                    fontSize: "1.6rem",
+                    fontWeight: isActive ? 700 : 500,
+                    letterSpacing: "-0.01em",
+                    color: isActive ? "var(--white)" : "rgba(255,255,255,0.6)",
                   }}
                 >
                   {tab.label}
@@ -165,9 +174,11 @@ export default function HowItWorks() {
           {/* Text side */}
           <div>
             <h3
-              className="sx-subheading"
               style={{
-                fontSize: "clamp(22px, 3vw, 34px)",
+                fontSize: "clamp(24px, 3vw, 32px)",
+                fontWeight: 600,
+                letterSpacing: "-0.01em",
+                color: "var(--white)",
                 marginBottom: "24px",
                 maxWidth: "420px",
               }}
@@ -176,11 +187,10 @@ export default function HowItWorks() {
             </h3>
 
             <p
-              className="sx-body"
+              className="sb-body"
               style={{
-                fontSize: "15px", // Increased from 14px
-                letterSpacing: "0.4px",
-                lineHeight: 1.85,
+                color: "rgba(255,255,255,0.8)",
+                lineHeight: 1.6,
                 marginBottom: "40px",
                 maxWidth: "400px",
               }}
@@ -188,18 +198,20 @@ export default function HowItWorks() {
               {current.description}
             </p>
 
-            <a href="#lien-he" className="btn-ghost">
+            <a href="#lien-he" className="btn-primary" style={{ background: "transparent", color: "var(--accent-green)", border: "1px solid var(--accent-green)" }}>
               {current.cta}
             </a>
           </div>
 
-          {/* Image side — full bleed, no border radius */}
+          {/* Image side */}
           <div
             style={{
               position: "relative",
               aspectRatio: "16/10",
               width: "100%",
               overflow: "hidden",
+              borderRadius: "12px",
+              boxShadow: "0 0 0.5px rgba(0,0,0,0.14), 0 1px 1px rgba(0,0,0,0.24)",
             }}
           >
             <Image
@@ -208,33 +220,19 @@ export default function HowItWorks() {
               fill
               style={{
                 objectFit: "cover",
-                transition: "transform 0.7s ease",
-              }}
-              onMouseEnter={(e) => {
-                (e.currentTarget as HTMLImageElement).style.transform =
-                  "scale(1.04)";
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget as HTMLImageElement).style.transform =
-                  "scale(1)";
-              }}
-            />
-            {/* Subtle dark overlay on image */}
-            <div
-              style={{
-                position: "absolute",
-                inset: 0,
-                background:
-                  "linear-gradient(135deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0) 60%)",
-                pointerEvents: "none",
+                background: "var(--neutral-cool)", // fallback color
               }}
             />
           </div>
         </div>
       </div>
 
-      {/* Responsive layout */}
+      {/* Responsive layout & animations */}
       <style>{`
+        @keyframes fadeInUp {
+          from { opacity: 0; transform: translateY(20px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
         @media (max-width: 768px) {
           .hiw-content {
             grid-template-columns: 1fr !important;

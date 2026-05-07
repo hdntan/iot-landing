@@ -8,6 +8,7 @@ import Pricing from "@/app/components/pricing";
 import Faq from "@/app/components/faq";
 import Stats from "@/app/components/stats";
 import Footer from "@/app/components/footer";
+import FrapButton from "@/app/components/frap-button";
 
 export default function Home() {
   return (
@@ -24,6 +25,7 @@ export default function Home() {
         <Faq />
       </main>
       <Footer />
+      <FrapButton />
     </>
   );
 }
