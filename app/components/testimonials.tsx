@@ -18,56 +18,56 @@ interface Testimonial {
 
 const testimonials: Testimonial[] = [
   {
-    text: "Mô hình Pay-per-cup giúp chúng tôi mở rộng chuỗi từ 10 lên 28 cơ sở mà không cần đầu tư vốn thiết bị ban đầu. Doanh thu tăng 40% chỉ sau 6 tháng.",
-    highlight: "Pay-per-cup",
+    text: "Tính năng điều khiển bật/tắt máy từ xa giúp chúng tôi xử lý sự cố ngay lập tức mà không cần cử kỹ thuật viên đến tận nơi. Tiết kiệm rất nhiều thời gian.",
+    highlight: "điều khiển bật/tắt máy từ xa",
     name: "Nguyễn Minh Tuấn",
-    role: "Giám đốc Vận hành",
-    company: "Chuỗi cà phê — 28 cơ sở",
+    role: "Admin hệ thống",
+    company: "Chuỗi cho thuê máy — 28 cơ sở",
     initials: "NT",
     accentColor: "#00754A",
   },
   {
-    text: "Dashboard IoT cho phép tôi kiểm soát nguyên liệu tiêu thụ của 15 điểm bán theo thời gian thực. Báo cáo tự động giúp tiết kiệm 3 giờ thống kê mỗi ngày.",
-    highlight: "Dashboard IoT",
+    text: "Dashboard quản lý máy rất trực quan. Tôi có thể xem trạng thái online/offline của tất cả máy trong chuỗi chỉ trên một màn hình, không cần gọi điện hỏi từng nơi.",
+    highlight: "Dashboard quản lý máy",
     name: "Trần Thị Lan",
-    role: "Quản lý F&B",
-    company: "Khách sạn 5 sao — Đà Nẵng",
+    role: "Shop Owner",
+    company: "Chuỗi cà phê — Đà Nẵng",
     initials: "TL",
     accentColor: "#006241",
   },
   {
-    text: "Tính năng khóa thiết bị từ xa giúp chúng tôi hoàn toàn yên tâm khi vận hành 50+ máy cho thuê. Chưa một lần mất thiết bị kể từ khi triển khai.",
-    highlight: "khóa thiết bị từ xa",
+    text: "Quy trình đăng ký máy rất đơn giản. Kỹ thuật viên chỉ cần nhập mã định danh và thông tin khách hàng là xong, toàn bộ dữ liệu tự đồng bộ về hệ thống.",
+    highlight: "đăng ký máy rất đơn giản",
     name: "Lê Văn Hùng",
-    role: "CEO",
-    company: "Dịch vụ CaaS — 50+ máy",
+    role: "Kỹ thuật viên",
+    company: "Dịch vụ lắp đặt IoT",
     initials: "LH",
     accentColor: "#1E3932",
   },
   {
-    text: "Tích hợp phân tích AI giúp chúng tôi dự báo nhu cầu pha chế và tối ưu lịch bảo trì. Chi phí vận hành giảm 25% trong quý đầu tiên triển khai.",
-    highlight: "phân tích AI",
+    text: "Báo cáo giờ sử dụng máy theo tuần/tháng giúp tôi đối soát hợp đồng thuê máy chính xác hơn. Không còn tranh chấp với khách hàng về thời gian sử dụng thực tế.",
+    highlight: "Báo cáo giờ sử dụng máy",
     name: "Phạm Thu Hương",
-    role: "COO",
-    company: "Chuỗi F&B — 45 chi nhánh",
+    role: "Shop Owner",
+    company: "Dịch vụ cho thuê máy — 45 điểm",
     initials: "PH",
     accentColor: "#00754A",
   },
   {
-    text: "Asset management theo thời gian thực cho phép đội kỹ thuật phản hồi sự cố trong vòng 30 phút. Uptime thiết bị đạt 99.2% kể từ khi áp dụng nền tảng.",
-    highlight: "Asset management",
+    text: "Hệ thống phân quyền RBAC rõ ràng giúp mỗi Shop chỉ thấy máy của mình. Admin có toàn quyền kiểm soát mà không lo Shop can thiệp vào dữ liệu của nhau.",
+    highlight: "phân quyền RBAC",
     name: "Võ Đình Khoa",
-    role: "IT Manager",
+    role: "Admin hệ thống",
     company: "Tập đoàn bán lẻ — 80 store",
     initials: "VK",
     accentColor: "#006241",
   },
   {
-    text: "Mô hình CaaS cho phép chúng tôi thử nghiệm không gian cà phê không gian văn phòng mà chỉ trả theo mức tiêu thụ thực tế. Rủi ro gần như bằng không.",
-    highlight: "trả theo mức tiêu thụ thực tế",
+    text: "Kết nối MQTT qua HiveMQ rất ổn định. Lệnh bật/tắt máy được thực thi gần như tức thì, chưa bao giờ bị trễ hay mất lệnh kể từ khi triển khai.",
+    highlight: "Kết nối MQTT",
     name: "Đỗ Thanh Bình",
-    role: "Facility Manager",
-    company: "Tòa nhà văn phòng hạng A",
+    role: "IT Manager",
+    company: "Chuỗi văn phòng hạng A",
     initials: "DB",
     accentColor: "#1E3932",
   },
@@ -331,8 +331,7 @@ export default function Testimonials() {
             letterSpacing: "-0.01em",
           }}
         >
-          Hàng trăm doanh nghiệp F&B đang chuyển đổi mô hình vận hành với
-          Coffee IoT.
+          Admin và Shop trên khắp cả nước đang tin dùng CoffeeIOT để quản lý thiết bị.
         </p>
       </div>
 

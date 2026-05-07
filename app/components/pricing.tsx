@@ -64,19 +64,19 @@ function BorderTrail({
 ───────────────────────────────────────────────────────────── */
 const plans = [
   {
-    id: "lite",
-    name: "CaaS LITE",
-    tagline: "Quản lý tài sản cơ bản",
+    id: "starter",
+    name: "STARTER",
+    tagline: "Dành cho Shop nhỏ",
     price: "490.000đ",
-    period: "/ máy / tháng",
+    period: "/ tháng",
     oldPrice: "590.000đ",
     discount: "17% off",
-    description: "Lý tưởng cho doanh nghiệp bắt đầu số hóa thiết bị.",
+    description: "Quản lý tối đa 10 máy. Lý tưởng cho Shop mới bắt đầu số hóa.",
     features: [
-      "Định vị & chống trộm GPS",
-      "Cảnh báo di dời trái phép",
-      "Khóa máy từ xa",
-      "Dashboard trực quan",
+      "Quản lý tối đa 10 máy",
+      "Điều khiển bật/tắt từ xa",
+      "Theo dõi trạng thái máy",
+      "Báo cáo giờ sử dụng",
       "Hỗ trợ 8/5",
     ],
     cta: "Bắt đầu",
@@ -86,19 +86,19 @@ const plans = [
   },
   {
     id: "pro",
-    name: "CaaS PRO",
-    tagline: "Pay-per-cup toàn diện",
+    name: "PRO",
+    tagline: "Dành cho chuỗi vừa",
     price: "890.000đ",
-    period: "/ máy / tháng",
+    period: "/ tháng",
     oldPrice: "1.190.000đ",
     discount: "25% off",
-    description: "Giải pháp IoT đầy đủ cho chuỗi vận hành chuyên nghiệp.",
+    description: "Quản lý tối đa 100 máy. Đầy đủ tính năng cho vận hành chuyên nghiệp.",
     features: [
-      "Tất cả tính năng Lite",
-      "Thống kê ly pha real-time",
-      "Báo cáo nguyên liệu tự động",
-      "Dự báo bảo trì AI",
-      "Tích hợp POS / ERP cơ bản",
+      "Quản lý tối đa 100 máy",
+      "Tất cả tính năng Starter",
+      "Quản lý thông tin khách thuê",
+      "Báo cáo tuần/tháng/năm",
+      "Phân quyền Admin & Shop",
       "Hỗ trợ 24/7",
     ],
     cta: "Dùng thử 14 ngày",
@@ -109,17 +109,17 @@ const plans = [
   {
     id: "enterprise",
     name: "ENTERPRISE",
-    tagline: "Tích hợp sâu cho chuỗi lớn",
+    tagline: "Dành cho chuỗi lớn",
     price: "Liên hệ",
     period: "",
     oldPrice: null,
     discount: null,
-    description: "Giải pháp tùy chỉnh, triển khai riêng, hỗ trợ tận nơi.",
+    description: "Không giới hạn máy. Triển khai riêng, hỗ trợ tận nơi.",
     features: [
+      "Không giới hạn số máy",
       "Tất cả tính năng Pro",
-      "API tích hợp ERP / POS đầy đủ",
       "Triển khai On-premise",
-      "Hardware tùy chỉnh theo yêu cầu",
+      "Tùy chỉnh theo yêu cầu",
       "Dedicated support & SLA",
     ],
     cta: "Liên hệ Sales",
@@ -443,7 +443,7 @@ export default function Pricing() {
               margin: "0 auto 20px",
             }}
           >
-            Chọn gói phù hợp với bạn
+            Chọn gói phù hợp với quy mô của bạn
           </h2>
 
           <p

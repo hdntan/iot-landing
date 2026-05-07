@@ -18,15 +18,15 @@ interface WaveConfig {
 }
 
 const highlightPills = [
-  "Công nghệ độc quyền",
   "Kết nối Wifi/4G",
-  "Chuẩn công nghiệp",
+  "Điều khiển từ xa",
+  "Phân quyền Admin & Shop",
 ] as const;
 
 const heroStats: { label: string; value: string }[] = [
-  { label: "Máy đang quản lý", value: "500+" },
-  { label: "Thất thoát sản lượng", value: "0%" },
-  { label: "Tiết kiệm chi phí", value: "30%" },
+  { label: "Máy đang quản lý", value: "1000+" },
+  { label: "Phản hồi API", value: "<2s" },
+  { label: "Uptime đảm bảo", value: "99.9%" },
 ];
 
 const containerVariants: Variants = {
@@ -266,7 +266,7 @@ export default function Hero() {
             }}
           >
             <Sparkles className="h-4 w-4" style={{ color: "#cba258" }} aria-hidden="true" />
-            Nền tảng F&B IoT thế hệ mới
+            Nền tảng quản lý máy pha cà phê thông minh
           </motion.div>
 
           <motion.h1
@@ -274,14 +274,14 @@ export default function Hero() {
             className="mb-8 text-6xl font-bold tracking-tighter md:text-[5.5rem] lg:text-[6.5rem] leading-[1.05]"
             style={{ color: "#ffffff" }}
           >
-            Coffee-as-a-Service.{" "}
+            Quản lý máy pha cà phê.{" "}
             <span 
               className="bg-clip-text text-transparent" 
               style={{ 
                 backgroundImage: "linear-gradient(to right, #cba258, rgba(203,162,88,0.8), rgba(242,240,235,0.9))" 
               }}
             >
-              Minh bạch đến từng ly.
+              Thông minh & Toàn diện.
             </span>
           </motion.h1>
 
@@ -290,7 +290,7 @@ export default function Hero() {
             className="mx-auto mb-14 max-w-4xl text-2xl md:text-3xl leading-relaxed"
             style={{ color: "rgba(255, 255, 255, 0.9)" }}
           >
-            Nâng cấp mô hình cho thuê máy pha cà phê của bạn. Thu phí theo lượng ly thực tế (Pay-per-cup), kiểm soát tài sản 100% và bảo trì chủ động chỉ với một chạm.
+            Hệ thống IoT giúp Admin và Shop theo dõi, điều khiển và báo cáo toàn bộ máy pha cà phê theo thời gian thực — từ đăng ký thiết bị đến bật/tắt từ xa chỉ với một chạm.
           </motion.p>
 
           <motion.div

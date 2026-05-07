@@ -11,41 +11,41 @@ const classNames = (...classes: (string | undefined | null | false)[]) => classe
 const stepsData = [
   {
     id: "step-1",
-    title: "1. Triển khai phần cứng",
+    title: "1. Admin nạp mã thiết bị",
     description:
-      "Module IoT gắn ngoài chuẩn công nghiệp. Tương thích hoàn toàn với 90% các dòng máy pha cà phê chuyên nghiệp trên thị trường mà không cần can thiệp sâu vào bo mạch.",
+      "Admin đăng nhập hệ thống và nạp mã thiết bị (ví dụ: Device1) để đăng ký thiết bị IoT mới vào hệ thống.",
     image:
       "https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=2070&auto=format&fit=crop",
   },
   {
     id: "step-2",
-    title: "2. Kết nối & Đồng bộ",
+    title: "2. Shop tạo mã định danh máy",
     description:
-      "Tự động kết nối qua Wifi hoặc 4G LTE. Dữ liệu chiết xuất của mỗi ly cà phê được ghi nhận và đồng bộ lập tức về Cloud Center theo thời gian thực.",
+      "Shop kết nối với wifi nội bộ và tạo mã định danh máy (ví dụ: MA-12345) để liên kết với thiết bị IoT tương ứng.",
     image:
       "https://images.unsplash.com/photo-1551250928-243dc937c49d?q=80&w=2070&auto=format&fit=crop",
   },
   {
     id: "step-3",
-    title: "3. Dashboard Quản trị",
+    title: "3. Thiết bị xác nhận kết nối",
     description:
-      "Giao diện trực quan hiển thị toàn cảnh mạng lưới. Kiểm soát trạng thái online/offline, số lượng ly pha, và cảnh báo bảo trì trên cùng một màn hình.",
+      "Thiết bị IoT gửi dữ liệu mã định danh về hệ thống. Shop xác nhận chấp nhận kết nối để hoàn tất đăng ký máy.",
     image:
       "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop",
   },
   {
     id: "step-4",
-    title: "4. Pay-per-cup",
+    title: "4. Kỹ thuật viên cài đặt thông tin khách hàng",
     description:
-      "Chuyển đổi sang mô hình kinh doanh thu phí theo sản lượng thực tế. Minh bạch, an toàn 100% và bảo vệ doanh thu tuyệt đối.",
+      "Kỹ thuật viên nhập thông tin khách thuê máy (Tên, SĐT, Địa chỉ). Thiết bị gửi dữ liệu về hệ thống để lưu trữ.",
     image:
       "https://images.unsplash.com/photo-1497935586351-b67a49e012bf?q=80&w=2071&auto=format&fit=crop",
   },
   {
     id: "step-5",
-    title: "5. Tối ưu vận hành",
+    title: "5. Quản lý & điều khiển từ xa",
     description:
-      "Hệ thống API mở sẵn sàng tích hợp thẳng vào phần mềm ERP/Kế toán của doanh nghiệp, tự động hóa quy trình đối soát.",
+      "Admin hoặc Shop đăng nhập, chọn máy trong danh sách và thực hiện bật/tắt từ xa. Tín hiệu được gửi tức thì đến thiết bị qua MQTT.",
     image:
       "https://images.unsplash.com/photo-1453614512568-c4024d13c247?q=80&w=2069&auto=format&fit=crop",
   },
@@ -115,10 +115,10 @@ export default function HowItWorks() {
               Cách hoạt động
             </p>
             <h2 className="text-5xl font-bold md:text-6xl lg:text-7xl text-[#1e3932] tracking-tighter">
-              Sẵn sàng triển khai<br />trong 5 phút.
+              Triển khai nhanh<br />trong 5 bước.
             </h2>
             <p className="text-xl md:text-2xl text-[rgba(0,0,0,0.65)] leading-[1.6] mt-4">
-              Hệ sinh thái công nghệ trọn vẹn giúp các đơn vị rang xay, cho thuê máy pha cà phê dễ dàng theo dõi tài sản và bảo vệ doanh thu.
+              Từ lúc nạp mã thiết bị đến khi điều khiển máy từ xa — quy trình đơn giản, rõ ràng cho cả Admin lẫn Shop.
             </p>
           </div>
           <div className="hidden shrink-0 gap-3 md:flex pb-2">

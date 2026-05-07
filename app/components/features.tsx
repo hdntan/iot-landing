@@ -16,45 +16,45 @@ import {
 ───────────────────────────────────────────────────────────── */
 const features = [
   {
-    title: "Kiểm soát 100% tài sản",
+    title: "Quản lý máy theo thời gian thực",
     icon: MapPin,
     description:
-      "Giám sát vị trí và tình trạng hoạt động của máy theo thời gian thực. Tự động khóa máy từ xa nếu phát hiện di dời trái phép hoặc trễ hạn thanh toán.",
+      "Xem toàn bộ danh sách máy pha cà phê, trạng thái hoạt động và địa chỉ lắp đặt. Admin và Shop đều có thể theo dõi máy thuộc quyền quản lý của mình.",
     pattern: [[7, 1], [8, 2], [9, 5], [10, 3], [7, 6]],
   },
   {
-    title: "Minh bạch từng ly cà phê",
+    title: "Điều khiển bật/tắt từ xa",
     icon: CupSoda,
     description:
-      "Dữ liệu chiết xuất (nhiệt độ, áp suất, thời gian) được gửi về hệ thống mỗi 30 giây. Đếm chính xác số ly pha để tính phí Pay-per-cup.",
+      "Gửi lệnh bật hoặc tắt máy pha cà phê từ xa qua giao thức MQTT. Tín hiệu được truyền tức thì đến thiết bị IoT gắn trên máy.",
     pattern: [[8, 1], [9, 4], [10, 2], [7, 3], [8, 6]],
   },
   {
-    title: "Báo cáo doanh thu & nguyên liệu",
+    title: "Báo cáo giờ sử dụng máy",
     icon: BarChart3,
     description:
-      "Thống kê mức tiêu thụ hạt cà phê và đối chiếu với số ly bán ra. Tự động phát hiện hao hụt và gian lận tại điểm bán.",
+      "Thống kê thời gian hoạt động của từng máy theo tuần, tháng, năm. Chỉ tính giờ khi máy đang trực tuyến và ở trạng thái hoạt động.",
     pattern: [[10, 1], [7, 2], [8, 5], [9, 3], [10, 6]],
   },
   {
-    title: "Bảo trì phòng ngừa bằng AI",
+    title: "Đăng ký & liên kết thiết bị",
     icon: Wrench,
     description:
-      "Phân tích dữ liệu bơm, thanh nhiệt để dự đoán hỏng hóc trước 14 ngày. Chủ động thay thế linh kiện, đảm bảo máy luôn sẵn sàng.",
+      "Shop tạo mã định danh máy để liên kết với thiết bị IoT. Thiết bị gửi dữ liệu xác nhận về hệ thống, Shop chấp nhận kết nối để hoàn tất đăng ký.",
     pattern: [[9, 1], [10, 4], [7, 2], [8, 3], [9, 6]],
   },
   {
-    title: "Bảo mật & chống trộm thông minh",
+    title: "Phân quyền Admin & Shop",
     icon: Lock,
     description:
-      "Cảnh báo tức thì khi máy bị di dời ngoài giờ. Khóa thiết bị từ xa qua app trong vòng 10 giây. Lịch sử sự kiện đầy đủ để xử lý tranh chấp.",
+      "Hệ thống RBAC rõ ràng: Admin quản lý toàn bộ hệ thống và tạo tài khoản Shop. Shop chỉ quản lý máy thuộc sở hữu của mình.",
     pattern: [[8, 2], [9, 1], [10, 5], [7, 4], [8, 3]],
   },
   {
-    title: "Kết nối đa nền tảng",
+    title: "Kết nối Wifi & 4G",
     icon: Wifi,
     description:
-      "Tích hợp liền mạch với POS, ERP và hệ thống quản lý chuỗi hiện có. API mở cho phép tùy chỉnh dashboard theo nhu cầu doanh nghiệp.",
+      "Thiết bị IoT hỗ trợ kết nối qua Wifi nội bộ hoặc 4G LTE. Dữ liệu được đồng bộ liên tục về hệ thống qua broker HiveMQ + MQTT.",
     pattern: [[7, 3], [8, 5], [9, 2], [10, 1], [7, 6]],
   },
 ];
@@ -318,7 +318,7 @@ export default function Features() {
               margin: "0 auto 20px",
             }}
           >
-            Mọi thứ bạn cần để vận hành thông minh hơn
+            Đầy đủ công cụ để vận hành thông minh hơn
           </h2>
 
           <p
@@ -331,8 +331,7 @@ export default function Features() {
               letterSpacing: "-0.01em",
             }}
           >
-            Kiểm soát toàn bộ chuỗi thiết bị — từ vị trí đến từng ly pha — trên
-            một nền tảng duy nhất.
+            Quản lý toàn bộ máy pha cà phê — từ đăng ký thiết bị đến điều khiển từ xa — trên một nền tảng duy nhất.
           </p>
         </AnimatedContainer>
 
