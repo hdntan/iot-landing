@@ -17,6 +17,10 @@ export const metadata: Metadata = {
     description: "Giám sát toàn bộ máy pha cà phê, từ xa.",
     type: "website",
   },
+  icons: {
+    icon: "/icon.svg",
+    apple: "/icon.svg",
+  },
 };
 
 export default function RootLayout({
