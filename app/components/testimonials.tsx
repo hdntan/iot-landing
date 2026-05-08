@@ -294,7 +294,7 @@ export default function Testimonials() {
         {/* Eyebrow */}
         <p
           style={{
-            fontSize: "1.3rem",
+            fontSize: "16px",
             fontWeight: 600,
             color: "#00754A",
             textTransform: "uppercase",

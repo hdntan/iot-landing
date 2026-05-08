@@ -420,7 +420,7 @@ export default function Pricing() {
           {/* Eyebrow */}
           <p
             style={{
-              fontSize: "1.3rem",
+              fontSize: "16px",
               fontWeight: 700,
               color: "#00754A",
               textTransform: "uppercase",

@@ -185,7 +185,7 @@ export default function UseCases() {
         <AnimCell delay={0.05} style={{ textAlign: "center", marginBottom: "56px" }}>
           <p
             style={{
-              fontSize: "1.3rem",
+              fontSize: "16px",
               fontWeight: 700,
               color: "#00754A",
               textTransform: "uppercase",

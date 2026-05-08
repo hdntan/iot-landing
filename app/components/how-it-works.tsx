@@ -114,7 +114,7 @@ export default function HowItWorks() {
             >
               Cách hoạt động
             </p>
-            <h2 className="text-5xl font-bold md:text-6xl lg:text-7xl text-[#1e3932] tracking-tighter">
+            <h2 className="text-5xl font-bold md:text-6xl lg:text-7xl text-[#006241] tracking-tighter">
               Triển khai nhanh<br />trong 5 bước.
             </h2>
             <p className="text-xl md:text-2xl text-[rgba(0,0,0,0.65)] leading-[1.6] mt-4">

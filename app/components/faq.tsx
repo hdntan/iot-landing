@@ -170,7 +170,7 @@ export default function Faq() {
             >
               FAQ
             </p>
-            <h2 className="text-5xl font-bold md:text-6xl lg:text-7xl text-[#1e3932] tracking-tighter mb-0">
+            <h2 className="text-5xl font-bold md:text-6xl lg:text-7xl text-[#006241] tracking-tighter mb-0">
               Câu hỏi<br />thường gặp.
             </h2>
           </div>

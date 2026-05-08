@@ -62,7 +62,7 @@ export default function Navbar() {
             gap: "10px",
           }}
         >
-          <svg
+          {/* <svg
             width="28"
             height="28"
             viewBox="0 0 24 24"
@@ -77,7 +77,7 @@ export default function Navbar() {
               strokeLinecap="round"
               strokeLinejoin="round"
             />
-          </svg>
+          </svg> */}
           Coffee IoT
         </Link>
 

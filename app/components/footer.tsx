@@ -122,7 +122,7 @@ export default function Footer() {
               }}
             >
               {/* Starbucks-inspired circular logo mark */}
-              <svg
+              {/* <svg
                 width="24"
                 height="24"
                 viewBox="0 0 24 24"
@@ -137,7 +137,7 @@ export default function Footer() {
                   strokeLinecap="round"
                   strokeLinejoin="round"
                 />
-              </svg>
+              </svg> */}
               Coffee IoT
             </p>
             <p
