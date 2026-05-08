@@ -98,26 +98,26 @@ export default function HowItWorks() {
   }, [emblaApi, onSelect]);
 
   return (
-    <section id="cach-hoat-dong" className="py-24 md:py-32 overflow-hidden" style={{ backgroundColor: "#f2f0eb" }}>
-      <div className="container mx-auto px-6 md:px-8 lg:px-12">
+    <section id="cach-hoat-dong" className="overflow-hidden" style={{ backgroundColor: "#f2f0eb", padding: "clamp(80px, 12vh, 120px) 0" }}>
+      <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 var(--outer-gutter, 1.6rem)" }}>
         <div className="mb-12 flex flex-col md:flex-row items-end justify-between md:mb-16">
           <div className="flex flex-col gap-6 max-w-3xl">
             <p
-              className="sb-small"
               style={{
-                fontWeight: 700,
-                color: "#006241", // Starbucks Accent Green
-                textTransform: "uppercase",
-                letterSpacing: "0.2em",
                 fontSize: "16px",
+                fontWeight: 700,
+                color: "#00754A",
+                textTransform: "uppercase",
+                letterSpacing: "0.15em",
+                marginBottom: "16px",
               }}
             >
               Cách hoạt động
             </p>
-            <h2 className="text-5xl font-bold md:text-6xl lg:text-7xl text-[#006241] tracking-tighter">
+            <h2 style={{ fontSize: "clamp(2.8rem, 5vw, 4.5rem)", fontWeight: 600, color: "#006241", letterSpacing: "-0.016em", lineHeight: 1.2, margin: 0 }}>
               Triển khai nhanh<br />trong 5 bước.
             </h2>
-            <p className="text-xl md:text-2xl text-[rgba(0,0,0,0.65)] leading-[1.6] mt-4">
+            <p style={{ fontSize: "1.7rem", color: "rgba(0,0,0,0.58)", lineHeight: 1.55, letterSpacing: "-0.01em", margin: 0 }}>
               Từ lúc nạp mã thiết bị đến khi điều khiển máy từ xa — quy trình đơn giản, rõ ràng cho cả Admin lẫn Shop.
             </p>
           </div>

@@ -295,7 +295,7 @@ export default function Testimonials() {
         <p
           style={{
             fontSize: "16px",
-            fontWeight: 600,
+            fontWeight: 700,
             color: "#00754A",
             textTransform: "uppercase",
             letterSpacing: "0.15em",

@@ -298,7 +298,7 @@ export default function Hero() {
             className="mb-10 flex flex-col items-center justify-center gap-4 sm:flex-row"
           >
             <a
-              href="https://dimori.net/en"
+              href="https://iot.dimori.net/"
               target="_blank"
               rel="noopener noreferrer"
               className="group flex items-center justify-center gap-3 rounded-full px-10 py-5 text-lg font-bold uppercase tracking-[0.1em] transition-all hover:-translate-y-0.5"

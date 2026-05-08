@@ -40,7 +40,7 @@ const CustomAccordionTrigger = React.forwardRef<
     >
       <div className="flex items-center gap-5">
         <HelpCircle className="h-6 w-6 text-[#006241] flex-shrink-0" />
-        <span className="text-xl md:text-2xl font-semibold text-[#1e3932] tracking-tight">
+        <span style={{ fontSize: "1.7rem", fontWeight: 600, color: "#1e3932", letterSpacing: "-0.01em" }}>
           {children}
         </span>
       </div>
@@ -67,7 +67,7 @@ const CustomAccordionContent = React.forwardRef<
   >
     <div className="mt-4 md:ml-[3.25rem] ml-0 pb-2">
       <div className="flex items-start gap-5 rounded-2xl bg-[#fafaf8] border border-[#e2e0da] p-6 shadow-sm transition-all">
-        <span className="flex-1 text-lg leading-[1.6] text-[rgba(0,0,0,0.7)]">{children}</span>
+        <span className="flex-1" style={{ fontSize: "1.6rem", lineHeight: 1.6, color: "rgba(0,0,0,0.7)" }}>{children}</span>
         <div className="hidden sm:flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-white border border-[#e2e0da] transition-transform hover:scale-105">
           <MessageCircle className="h-5 w-5 text-[#006241]" />
         </div>
@@ -147,10 +147,10 @@ export default function Faq() {
   return (
     <section
       id="faq"
-      className="py-24 md:py-32 w-full"
-      style={{ background: "var(--neutral-warm)" }}
+      className="w-full"
+      style={{ background: "var(--neutral-warm)", padding: "clamp(80px, 12vh, 120px) var(--outer-gutter, 1.6rem)" }}
     >
-      <div className="container mx-auto px-6 md:px-8 lg:px-12 max-w-6xl">
+      <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
         {/* ── Header ──────────────────────────────────────────────── */}
         <div
           ref={headerRef}
@@ -158,24 +158,23 @@ export default function Faq() {
         >
           <div className="flex-1 max-w-2xl">
             <p
-              className="sb-small"
-              style={{ 
-                marginBottom: "24px", 
+              style={{
+                marginBottom: "16px",
                 fontWeight: 700,
-                color: "var(--starbucks-green)",
+                color: "#00754A",
                 textTransform: "uppercase",
-                letterSpacing: "0.2em",
+                letterSpacing: "0.15em",
                 fontSize: "16px"
               }}
             >
               FAQ
             </p>
-            <h2 className="text-5xl font-bold md:text-6xl lg:text-7xl text-[#006241] tracking-tighter mb-0">
+            <h2 style={{ fontSize: "clamp(2.8rem, 5vw, 4.5rem)", fontWeight: 600, color: "#006241", letterSpacing: "-0.016em", lineHeight: 1.2, margin: 0 }}>
               Câu hỏi<br />thường gặp.
             </h2>
           </div>
           <div className="md:max-w-md pb-2">
-            <p className="text-xl text-[rgba(0,0,0,0.65)] leading-[1.6]">
+            <p style={{ fontSize: "1.7rem", color: "rgba(0,0,0,0.58)", lineHeight: 1.55, letterSpacing: "-0.01em" }}>
               Có câu hỏi nào khác? Liên hệ trực tiếp với chúng tôi qua{" "}
               <a
                 href="https://dimori.net/en"

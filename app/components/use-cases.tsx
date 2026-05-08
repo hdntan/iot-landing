@@ -180,7 +180,7 @@ export default function UseCases() {
         padding: "clamp(80px, 12vh, 120px) var(--outer-gutter, 24px)",
       }}
     >
-      <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
+      <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
         {/* ── Section header ── */}
         <AnimCell delay={0.05} style={{ textAlign: "center", marginBottom: "56px" }}>
           <p
